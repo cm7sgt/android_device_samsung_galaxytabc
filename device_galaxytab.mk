@@ -27,7 +27,7 @@ $(call inherit-product, device/common/gps/gps_us_supl.mk)
 ## (1) First, the most specific values, i.e. the aspects that are specific to GSM
 
 ## (2) Also get non-open-source GSM-specific aspects if available
-$(call inherit-product-if-exists, vendor/samsung/GT-P1000/GT-P1000-vendor.mk)
+$(call inherit-product-if-exists, vendor/samsung/common/GT-P1000/GT-P1000-vendor.mk)
 
 ## (3) Finally, the least specific parts, i.e. the non-GSM-specific aspects
 
@@ -114,72 +114,101 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/initramfs/recovery.fstab:root/misc/recovery.fstab \
     $(LOCAL_PATH)/initramfs/ueventd.rc:root/ueventd.rc
 
-ifeq ($(TARGET_PREBUILT_KERNEL),)
-LOCAL_KERNEL := $(LOCAL_PATH)/kernel
-else
-LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
-endif
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_KERNEL):kernel
-
-# kernel modules we built
-PRODUCT_COPY_FILES += \
-    kernel-galaxytab/fs/cifs/cifs.ko:system/lib/modules/2.6.32.9/cifs.ko \
-    kernel-galaxytab/drivers/net/tun.ko:system/lib/modules/2.6.32.9/tun.ko
-
-# kernel modules we built
-PRODUCT_COPY_FILES += \
-    kernel-galaxytab/drivers/onedram/onedram.ko:root/lib/modules/onedram.ko \
-    kernel-galaxytab/drivers/svnet/svnet.ko:root/lib/modules/svnet.ko \
-    kernel-galaxytab/drivers/scsi/scsi_wait_scan.ko:root/lib/modules/scsi_wait_scan.ko \
-    kernel-galaxytab/drivers/modemctl/modemctl.ko:root/lib/modules/modemctl.ko \
-    kernel-galaxytab/drivers/misc/vibtonz/vibrator.ko:root/lib/modules/vibrator.ko \
-    kernel-galaxytab/drivers/bluetooth/bthid/bthid.ko:root/lib/modules/bthid.ko \
-    kernel-galaxytab/drivers/net/wireless/bcm4329/dhd.ko:root/lib/modules/dhd.ko \
-    kernel-galaxytab/drivers/gpu/pvr/s3c_bc.ko:root/modules/s3c_bc.ko \
-    kernel-galaxytab/drivers/gpu/pvr/s3c_lcd.ko:root/modules/s3c_lcd.ko \
-    kernel-galaxytab/drivers/gpu/pvr/pvrsrvkm.ko:root/modules/pvrsrvkm.ko
-
-# binary kernel modules we dont have sources for
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/prebuilt/lib/modules/fsr.ko:root/lib/modules/fsr.ko \
-    $(LOCAL_PATH)/prebuilt/lib/modules/fsr_stl.ko:root/lib/modules/fsr_stl.ko \
-    $(LOCAL_PATH)/prebuilt/lib/modules/j4fs.ko:root/lib/modules/j4fs.ko \
-    $(LOCAL_PATH)/prebuilt/lib/modules/rfs_fat.ko:root/lib/modules/rfs_fat.ko \
-    $(LOCAL_PATH)/prebuilt/lib/modules/rfs_glue.ko:root/lib/modules/rfs_glue.ko \
-    $(LOCAL_PATH)/prebuilt/lib/modules/storage.ko:root/lib/modules/storage.ko \
-    $(LOCAL_PATH)/prebuilt/lib/modules/param.ko:root/lib/modules/param.ko
-
-# These are the OpenMAX IL configuration files
-PRODUCT_COPY_FILES += \
-    device/samsung/common/sec_mm/sec_omx/sec_omx_core/secomxregistry:system/etc/secomxregistry
 
 # GSM APN list override one in common_full
 PRODUCT_COPY_FILES += \
     vendor/cyanogen/prebuilt/common/etc/apns-conf.xml:system/etc/apns-conf.xml
 
+# These are the OpenMAX IL configuration files
+#PRODUCT_COPY_FILES += \
+#    device/samsung/common/sec_mm/sec_omx/sec_omx_core/secomxregistry:system/etc/secomxregistry
+
 # These are the OpenMAX IL modules
-PRODUCT_PACKAGES += \
-    libSEC_OMX_Core \
-    libOMX.SEC.AVC.Decoder \
-    libOMX.SEC.M4V.Decoder \
-    libOMX.SEC.M4V.Encoder \
-    libOMX.SEC.AVC.Encoder
+#PRODUCT_PACKAGES += \
+#    libSEC_OMX_Core \
+#    libOMX.SEC.AVC.Decoder \
+#    libOMX.SEC.M4V.Decoder \
+#    libOMX.SEC.M4V.Encoder \
+#    libOMX.SEC.AVC.Encoder
 
 # Misc other modules
 #    copybit.s5pc110 \
 #    overlay.s5pc110 \
+#    overlay.galaxytab \
 
 PRODUCT_PACKAGES += \
-    overlay.galaxytab \
     lights.galaxytab \
     sensors.galaxytab \
     akmd \
+    libaudio
+
+PRODUCT_PACKAGES += \
     sec_mm \
     libs3cjpeg \
     libcamera \
     libstagefrighthw
+
+
+KERNEL_BUILD := out/target/product/galaxytab/kernel_build
+KERNEL_TOOLCHAIN := /opt/toolchains/arm-2009q3/bin/arm-none-linux-gnueabi-
+
+PRODUCT_COPY_FILES += \
+    $(KERNEL_BUILD)/fs/cifs/cifs.ko:system/lib/modules/2.6.32.9/cifs.ko \
+    $(KERNEL_BUILD)/drivers/net/tun.ko:system/lib/modules/2.6.32.9/tun.ko
+
+# kernel modules we built
+PRODUCT_COPY_FILES += \
+    $(KERNEL_BUILD)/drivers/onedram/onedram.ko:recovery/root/lib/modules/onedram.ko \
+    $(KERNEL_BUILD)/drivers/svnet/svnet.ko:recovery/root/lib/modules/svnet.ko \
+    $(KERNEL_BUILD)/drivers/scsi/scsi_wait_scan.ko:recovery/root/lib/modules/scsi_wait_scan.ko \
+    $(KERNEL_BUILD)/drivers/modemctl/modemctl.ko:recovery/root/lib/modules/modemctl.ko \
+    $(KERNEL_BUILD)/drivers/misc/vibtonz/vibrator.ko:recovery/root/lib/modules/vibrator.ko \
+    $(KERNEL_BUILD)/drivers/bluetooth/bthid/bthid.ko:recovery/root/lib/modules/bthid.ko \
+    $(KERNEL_BUILD)/drivers/net/wireless/bcm4329/dhd.ko:recovery/root/lib/modules/dhd.ko \
+    $(KERNEL_BUILD)/drivers/gpu/pvr/s3c_bc.ko:recovery/root/modules/s3c_bc.ko \
+    $(KERNEL_BUILD)/drivers/gpu/pvr/s3c_lcd.ko:recovery/root/modules/s3c_lcd.ko \
+    $(KERNEL_BUILD)/drivers/gpu/pvr/pvrsrvkm.ko:recovery/root/modules/pvrsrvkm.ko
+
+
+ifeq ($(TARGET_PREBUILT_ZIMAGE),)
+LOCAL_ZIMAGE = out/target/product/galaxytab/kernel
+else
+LOCAL_ZIMAGE := $(TARGET_PREBUILT_ZIMAGE)
+endif
+
+.PHONY: build_kernel
+
+$(KERNEL_BUILD)/.config:
+	mkdir -p $(KERNEL_BUILD)
+	$(MAKE) -C kernel/samsung/2.6.32-tab ARCH=arm O=$(ANDROID_BUILD_TOP)/$(PRODUCT_OUT)/kernel_build p1_android_rfs_eur_cm7_defconfig
+
+
+KERNEL_MODULES := \
+$(KERNEL_BUILD)/fs/cifs/cifs.ko \
+$(KERNEL_BUILD)/drivers/net/tun.ko \
+$(KERNEL_BUILD)/drivers/onedram/onedram.ko \
+$(KERNEL_BUILD)/drivers/svnet/svnet.ko \
+$(KERNEL_BUILD)/drivers/scsi/scsi_wait_scan.ko \
+$(KERNEL_BUILD)/drivers/modemctl/modemctl.ko \
+$(KERNEL_BUILD)/drivers/misc/vibtonz/vibrator.ko \
+$(KERNEL_BUILD)/drivers/bluetooth/bthid/bthid.ko \
+$(KERNEL_BUILD)/drivers/net/wireless/bcm4329/dhd.ko \
+$(KERNEL_BUILD)/drivers/gpu/pvr/s3c_bc.ko \
+$(KERNEL_BUILD)/drivers/gpu/pvr/s3c_lcd.ko \
+$(KERNEL_BUILD)/drivers/gpu/pvr/pvrsrvkm.ko
+
+$(KERNEL_MODULES): $(KERNEL_BUILD)/.config
+	@echo "BUILDING MODULES"
+	$(MAKE) -C kernel/samsung/2.6.32-tab ARCH=arm O=$(ANDROID_BUILD_TOP)/$(PRODUCT_OUT)/kernel_build CROSS_COMPILE=$(KERNEL_TOOLCHAIN) modules
+
+
+out/target/product/galaxytab/kernel: out/target/product/galaxytab/recovery.img $(KERNEL_BUILD)/.config build_kernel
+	@echo "BUILDING KERNEL"
+	@echo "recovery.img size: `ls -l out/target/product/galaxytab/recovery.img`"
+	$(MAKE) -C kernel/samsung/2.6.32-tab ARCH=arm O=$(ANDROID_BUILD_TOP)/$(PRODUCT_OUT)/kernel_build CROSS_COMPILE=$(KERNEL_TOOLCHAIN)
+	$(ACP) $(PRODUCT_OUT)/kernel_build/arch/arm/boot/zImage $(PRODUCT_OUT)/kernel
+
+
 
 $(call inherit-product, build/target/product/full.mk)
 
@@ -187,7 +216,7 @@ PRODUCT_NAME := full_galaxytab
 PRODUCT_DEVICE := galaxytab
 PRODUCT_MODEL := GT-P1000
 PRODUCT_BOARD := p1
-PRODUCT_BRAND := Samsung
+PRODUCT_BRAND := samsung
 PRODUCT_MANUFACTURER := Samsung
 TARGET_IS_GALAXYS := true
 
