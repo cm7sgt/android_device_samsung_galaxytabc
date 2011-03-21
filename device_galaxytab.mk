@@ -170,13 +170,8 @@ PRODUCT_COPY_FILES += \
     $(KERNEL_BUILD)/drivers/gpu/pvr/pvrsrvkm.ko:recovery/root/modules/pvrsrvkm.ko
 
 
-ifeq ($(TARGET_PREBUILT_ZIMAGE),)
-LOCAL_ZIMAGE = out/target/product/galaxytab/kernel
-else
-LOCAL_ZIMAGE := $(TARGET_PREBUILT_ZIMAGE)
-endif
-
-.PHONY: build_kernel
+PRODUCT_COPY_FILES += \
+    $(KERNEL_BUILD)/arch/arm/boot/zImage:kernel
 
 $(KERNEL_BUILD)/.config:
 	mkdir -p $(KERNEL_BUILD)
@@ -202,12 +197,12 @@ $(KERNEL_MODULES): $(KERNEL_BUILD)/.config
 	$(MAKE) -C kernel/samsung/2.6.32-tab ARCH=arm O=$(ANDROID_BUILD_TOP)/$(PRODUCT_OUT)/kernel_build CROSS_COMPILE=$(KERNEL_TOOLCHAIN) modules
 
 
-out/target/product/galaxytab/kernel: out/target/product/galaxytab/recovery.img $(KERNEL_BUILD)/.config build_kernel
-	@echo "BUILDING KERNEL"
-	@echo "recovery.img size: `ls -l out/target/product/galaxytab/recovery.img`"
-	$(MAKE) -C kernel/samsung/2.6.32-tab ARCH=arm O=$(ANDROID_BUILD_TOP)/$(PRODUCT_OUT)/kernel_build CROSS_COMPILE=$(KERNEL_TOOLCHAIN)
-	$(ACP) $(PRODUCT_OUT)/kernel_build/arch/arm/boot/zImage $(PRODUCT_OUT)/kernel
+#out/target/product/galaxytab/kernel: out/target/product/galaxytab/recovery.img $(KERNEL_BUILD)/.config build_kernel
 
+$(KERNEL_BUILD)/arch/arm/boot/zImage: out/target/product/galaxytab/ramdisk-recovery.img $(KERNEL_BUILD)/.config
+	@echo "BUILDING KERNEL"
+	@echo "ramdisk-recovery.img size: `ls -l out/target/product/galaxytab/ramdisk-recovery.img`"
+	$(MAKE) -C kernel/samsung/2.6.32-tab ARCH=arm O=$(ANDROID_BUILD_TOP)/$(PRODUCT_OUT)/kernel_build CROSS_COMPILE=$(KERNEL_TOOLCHAIN)
 
 
 $(call inherit-product, build/target/product/full.mk)
