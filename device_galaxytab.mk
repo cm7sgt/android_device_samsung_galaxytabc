@@ -199,9 +199,9 @@ $(KERNEL_MODULES): $(KERNEL_BUILD)/.config
 
 #out/target/product/galaxytab/kernel: out/target/product/galaxytab/recovery.img $(KERNEL_BUILD)/.config build_kernel
 
-$(KERNEL_BUILD)/arch/arm/boot/zImage: out/target/product/galaxytab/ramdisk-recovery.img $(KERNEL_BUILD)/.config
+$(KERNEL_BUILD)/arch/arm/boot/zImage: out/target/product/galaxytab/recovery.img $(KERNEL_BUILD)/.config
 	@echo "BUILDING KERNEL"
-	@echo "ramdisk-recovery.img size: `ls -l out/target/product/galaxytab/ramdisk-recovery.img`"
+	@echo "recovery.img size: `ls -l out/target/product/galaxytab/recovery.img`"
 	$(MAKE) -C kernel/samsung/2.6.32-tab ARCH=arm O=$(ANDROID_BUILD_TOP)/$(PRODUCT_OUT)/kernel_build CROSS_COMPILE=$(KERNEL_TOOLCHAIN)
 
 
