@@ -29,7 +29,7 @@ Voice: OK
 3G Data: connection established but default route not set
 Wifi: works
 BT: sometimes stuck on startup, doesnt fully pair
-GPS: broken
+GPS: working
 Buttons backlight - linked to LCD backlight
 Sensors:
 - BMA020/BMA150 Accelerometer
@@ -37,14 +37,11 @@ Sensors:
 - BH1721FVC Lightsensor: OK
 - L3G4200D gyro: uninmplemented
 - Proximity: faked at 10cm
-Camera: not tested
+Camera: broken
 
 Issues and workarounds
 * Stuck on CM boot ani after flash
-    Probably / data is not mounted. 
-    run "adb shell mount"
-    it will show list of mounted partitions, if /data is not mounted to /dev/block/mmcblk0p2 as rfs, format the /data partiton.
-    To do that "adb reboot recovery". "adb shell" when in recovery, "parted /dev/block/mmcblk0", initialize/format partition 2 to fat32 using "mkfs 2 fat32"
+    After first install please start in recovery and do full wipe (select "wipe data/factory reset in recovery)
 
 * BT doesnt start
     Try again
@@ -52,6 +49,12 @@ Issues and workarounds
     If that doesnt help try "adb shell stop hciattach" Sometimes hciattach service gets stuck when starting.
 
 Changelog:
+2011-03-30
+    Built from new repo branched off teamhacksung.
+    overlay and libstagefrighthw (video accell) disabled so it is stable now.
+    Camera is disabled (stubbed).
+    data, dbdata and cache partition switched to ext4.
+
 2011-03-02
     Added source modules for pvrsrvkm, s3c_bc and s3c_lcd to kernel sources and build them from scratch
     Refreshed, merged and rebuilt, media scanner works again
