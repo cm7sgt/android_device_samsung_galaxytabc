@@ -119,7 +119,7 @@ loglevel 9
     mkdir /system
     # Mount /system rw first to give the filesystem a chance to save a checkpoint
     # mount yaffs2 mtd@system /system 
-    mount ext4 /dev/block/stl9 /system wait nosuid nodev noatime nodiratime noauto_da_alloc
+    mount ext4 /dev/block/stl9 /system wait nodev noatime nodiratime noauto_da_alloc
 
 # DATA
     # We chown/chmod /data again so because mount is run as root + defaults
