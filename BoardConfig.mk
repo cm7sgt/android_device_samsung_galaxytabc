@@ -40,6 +40,7 @@ TARGET_PROVIDES_INIT := true
 TARGET_PROVIDES_INIT_TARGET_RC := true
 TARGET_BOARD_PLATFORM := s5pc110
 TARGET_BOOTLOADER_BOARD_NAME := galaxytab
+TARGET_RECOVERY_INITRC := device/samsung/galaxytab/initramfs/recovery.rc
 BOARD_PROVIDES_BOOTMODE := true
 
 # Bluetooth
@@ -58,6 +59,7 @@ WIFI_DRIVER_MODULE_ARG := "firmware_path=/system/etc/wifi/bcm4329_sta.bin nvram_
 WIFI_IFACE_DIR := "/data/misc/wifi"
 CONFIG_DRIVER_WEXT := true
 BOARD_WEXT_NO_COMBO_SCAN := true
+
 
 USE_CAMERA_STUB := true
 ifeq ($(USE_CAMERA_STUB),false)
@@ -87,6 +89,8 @@ BOARD_USE_USB_MASS_STORAGE_SWITCH := true
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/s3c-usbgadget/gadget/lun"
 # emmc storage
 BOARD_EMMC_DEVICE := /dev/block/mmcblk0p1
+# Vold
+BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
 
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_HAS_NO_RECOVERY_PARTITION := true

@@ -205,6 +205,7 @@ $(KERNEL_BUILD)/arch/arm/boot/zImage: out/target/product/galaxytab/recovery.img 
 	$(MAKE) -C kernel/samsung/2.6.32-tab ARCH=arm O=$(ANDROID_BUILD_TOP)/$(PRODUCT_OUT)/kernel_build CROSS_COMPILE=$(KERNEL_TOOLCHAIN)
 
 
+
 $(call inherit-product, build/target/product/full.mk)
 
 PRODUCT_NAME := full_galaxytab
