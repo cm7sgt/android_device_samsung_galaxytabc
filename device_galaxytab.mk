@@ -115,6 +115,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/initramfs/ueventd.rc:root/ueventd.rc
 
 
+
 # GSM APN list override one in common_full
 PRODUCT_COPY_FILES += \
     vendor/cyanogen/prebuilt/common/etc/apns-conf.xml:system/etc/apns-conf.xml
