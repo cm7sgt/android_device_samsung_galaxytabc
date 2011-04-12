@@ -26,7 +26,7 @@ For Google apps download latest HDPI apps for Gingerbread http://goo-inside.me/g
 
 Status
 Voice: OK
-3G Data: connection established but default route not set
+3G Data: OK
 Wifi: works
 BT: sometimes stuck on startup, doesnt fully pair
 GPS: working
