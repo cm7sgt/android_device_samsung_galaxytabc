@@ -49,9 +49,12 @@ Issues and workarounds
     If that doesnt help try "adb shell stop hciattach" Sometimes hciattach service gets stuck when starting.
 
 Changelog:
+2011-04-20
+    Cleanup of init scripts, added /sdcard and /emmc links.
+
 2011-04-05
     Fixed suid/root issues. Refreshed and rebuilt with latest.
-    
+
 2011-03-30
     Built from new repo branched off teamhacksung.
     overlay and libstagefrighthw (video accell) disabled so it is stable now.
