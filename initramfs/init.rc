@@ -1,4 +1,6 @@
 on early-init
+    # maximum logging
+    write /proc/sys/kernel/printk 9 4 1 7
     start ueventd
 
 on init
@@ -270,40 +272,9 @@ loglevel 9
     chown root root /cache/lost+found
     chmod 0770 /cache/lost+found
 
-    chown radio radio /dev/dpramerr
-    chown radio radio /dev/dpram0
-    chown radio radio /dev/dpram1
-    chown radio radio /dev/dpram2
-    chown radio radio /dev/onedram_rfs
-    chown radio radio /dev/multipdp
-
     # allow net_raw to have access to /dev/socket directory
     chown root net_raw /dev/socket
     chmod 0775 /dev/socket
-
-    #permissions for sound     
-    chmod 666 /dev/snd/timer
-    chmod 666 /dev/snd/controlC0
-    chmod 666 /dev/snd/controlC1
-    chmod 666 /dev/snd/pcmC0D0c
-    chmod 666 /dev/snd/pcmC0D0p
-    chmod 666 /dev/snd/pcmC1D0c
-    chmod 666 /dev/snd/pcmC1D0p
-
-    #camera fix thanks skeeterslint
-    chmod 666 /dev/video0
-    chmod 666 /dev/video1
-    chmod 666 /dev/video14
-    chmod 666 /dev/video2
-    chmod 666 /dev/video21
-    chmod 666 /dev/video22
-
-    # permissions for MTP device node
-    chmod 0777 /dev/usb_mtp_gadget
-
-    mount rootfs rootfs / ro remount
-    chmod 0662 /dev/log/events
-    chmod 0662 /dev/log/system
 
 on boot
 # basic network init
@@ -360,7 +331,7 @@ on boot
     write /proc/sys/vm/dirty_background_ratio  5
 
     # Permissions
-    chmod 666 /system/usr/keychars/s3c-keypad.kcm.bin 
+    chmod 666 /system/usr/keychars/s3c-keypad.kcm.bin
 
     # Permissions for System Server and daemons.
     chown radio system /sys/android_power/state
@@ -393,16 +364,6 @@ on boot
     chown system system /sys/kernel/ipv4/tcp_rmem_max
     chown root radio /proc/cmdline
 
-# for Sensor HAL
-    chown compass compass /dev/akm8973_daemon
-    chmod 0666 /dev/akm8973_daemon
-    chown compass compass /dev/akm8973_aot
-    chmod 0666 /dev/accelerometer
-    chown compass compass /dev/accelerometer
-    chmod 0666 /dev/l3g4200d
-    chown compass compass /dev/l3g4200d
-    chmod 0666 /dev/akm8973_aot
-
 # Define TCP buffer sizes for various networks
 #   ReadMin, ReadInitial, ReadMax, WriteMin, WriteInitial, WriteMax,
     setprop net.tcp.buffersize.default 4096,87380,110208,4096,16384,110208
@@ -427,26 +388,14 @@ on boot
     chmod 0660 /sys/module/bluetooth_power/parameters/power
     chmod 0660 /proc/bluetooth/sleep/proto
 
-    chown bluetooth bluetooth /dev/uinput
-    chmod 0660 /dev/uinput
-
-    chown bluetooth bluetooth /dev/s3c2410_serial0
-    chmod 0666 /dev/s3c2410_serial0
-    chown bluetooth bluetooth /dev/rfkill
-    chmod 0666 /dev/rfkill
     chmod 0777 /sys/class/rfkill/rfkill0/state
     chmod 0777 /sys/class/rfkill/rfkill1/state
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
     chown bluetooth bluetooth /sys/class/rfkill/rfkill1/type
-    chown bluetooth bluetooth /sys/class/rfkill/rfkill1/state 
+    chown bluetooth bluetooth /sys/class/rfkill/rfkill1/state
 
     chmod 6771 /system/bin/brcm_dutMode
-# +++++++++++++++++++++++++++++++++++++++++++
-# for datarouter
-    chown system system /dev/ttygs0
-    chown system system /dev/dun 
-# +++++++++++++++++++++++++++++++++++++++++++
 
     class_start default
 

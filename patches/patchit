@@ -19,3 +19,5 @@ chmod a+x sdparted
 chmod a+x fix_permissions
 cd ${HERE}
 
+rm -rf ${DEPTH}/system/init
+

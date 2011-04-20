@@ -1,4 +1,6 @@
 on early-init
+    # maximum logging
+    write /proc/sys/kernel/printk 9 4 1 7
     start ueventd
 
 on init
@@ -12,6 +14,7 @@ on init
 	mkdir /data 0771 system system
 	mkdir /cache 0770 system cache
 	mkdir /sdcard 0000 system system
+	mkdir /tmp
 	mount tmpfs nodev /tmp
 
 	insmod /lib/modules/fsr.ko
@@ -30,10 +33,6 @@ on init
 	mkdir /data/log 0777
 	mkdir /data/anr 0777
 
-	chmod 0666 /dev/log/radio
-	chmod 0666 /dev/log/main
-	chmod 0666 /dev/log/event
-
 on boot
 	ifup lo
 	hostname localhost
@@ -45,6 +44,10 @@ on boot
 
 service console /system/bin/sh
 	console
+
+# adbd is controlled by the persist.service.adb.enable system property
+service adbd /sbin/adbd
+    disabled
 
 on property:persist.service.adb.enable=1
     start adbd

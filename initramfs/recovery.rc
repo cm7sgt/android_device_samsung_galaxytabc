@@ -1,4 +1,6 @@
 on early-init
+    # maximum logging
+    write /proc/sys/kernel/printk 9 4 1 7
     start ueventd
 
 on init
@@ -41,6 +43,9 @@ loglevel 9
     insmod /lib/modules/modemctl.ko
     insmod /lib/modules/bthid.ko
 
+    mkdir /tmp
+    mount tmpfs nodev /tmp
+
     symlink /misc /etc
 # Backward compatibility
     symlink /sys/kernel/debug /d
@@ -58,7 +63,7 @@ loglevel 9
     mkdir /acct
     mount cgroup none /acct cpuacct
     mkdir /acct/uid
-    
+
 
 # parameter block
 # LFS
@@ -85,8 +90,6 @@ loglevel 9
     # Secure container public mount points.
     mkdir /mnt/asec  0700 root system
     mount tmpfs tmpfs /mnt/asec mode=0755,gid=1000
-
-    mkdir /sd-ext 0771 system system
 
     write /proc/sys/kernel/panic_on_oops 1
     write /proc/sys/kernel/hung_task_timeout_secs 0
@@ -132,18 +135,16 @@ loglevel 9
     chmod 0771 /data
 
 # DBDATA
-    mkdir /dbdata
+    mkdir /datadata
     mount ext4 /dev/block/stl10 /dbdata wait nosuid nodev noatime nodiratime noauto_da_alloc
-    #mount rfs /dev/block/stl10 /dbdata nosuid nodev check=no
-    chown system system /dbdata
-    chmod 0771 /dbdata
-    chmod 0771 /dbdata
-    mkdir /dbdata/databases
-    chown system system /dbdata/databases
-    chmod 0777 /dbdata/databases
-    mkdir /dbdata/system
-    chown system system /dbdata/system
-    chmod 0775 /dbdata/system
+    chown system system /datadata
+    chmod 0771 /datadata
+    mkdir /datadata/databases
+    chown system system /datadata/databases
+    chmod 0777 /datadata/databases
+    mkdir /datadata/system
+    chown system system /datadata/system
+    chmod 0775 /datadata/system
 
     # Create dump dir and collect dumps.
     # Do this before we mount cache so eventually we can use cache for
@@ -166,8 +167,7 @@ loglevel 9
 
 # CACHE
     mkdir /cache 0771 system cache
-    #mount ext4 /dev/block/stl11 /cache nosuid nodev noatime nodiratime errors=continue nobh data=writeback barrier=0 noauto_da_alloc
-    mount rfs /dev/block/stl11 /cache nosuid nodev check=no
+    mount ext4 /dev/block/stl11 /cache nosuid nodev noatime nodiratime errors=continue nobh data=writeback barrier=0 noauto_da_alloc
     chown system cache /cache
     chmod 0771 /cache
 
@@ -190,23 +190,11 @@ loglevel 9
     chown root system /proc/sysrq-trigger
     chmod 0220 /proc/sysrq-trigger
 
-
-# create data/gps for GPS demon
-    mkdir /data/gps 700 gps system
-    chown gps system /data/gps
-    chown gps root /sys/class/sec/gps/GPS_PWR_EN/value
-    chmod 660 /sys/class/sec/gps/GPS_PWR_EN/value
-    chown gps root /sys/class/sec/gps/GPS_nRST/value
-    chmod 660 /sys/class/sec/gps/GPS_nRST/value
-    chown gps system /dev/s3c2410_serial1
-    chmod 600 /dev/s3c2410_serial1
-
 # what are these for? they dont seem to exist
     chown root system /sys/class/gpio/gpio121/value
     chmod 664 /sys/class/gpio/gpio121/value
     chown root system /sys/class/gpio/gpio120/value
     chmod 664 /sys/class/gpio/gpio120/value
-
 
 # create basic filesystem structure
     mkdir /data/misc 01771 system misc
@@ -237,18 +225,10 @@ loglevel 9
     chmod 0777 /data/log
     chmod 0777 /data/anr
 
-    chmod 0662 /dev/log/radio
-    chmod 0662 /dev/log/main
-    chmod 0662 /dev/log/event
-
     # create dalvik-cache and double-check the perms
     mkdir /data/dalvik-cache 0771 system system
     chown system system /data/dalvik-cache
     chmod 0771 /data/dalvik-cache
-
-    #mkdir /cache/dalvik-cache 0771 system system
-    #chown system system /cache/dalvik-cache
-    #chmod 0771 /cache/dalvik-cache
 
 # use dbdata partition for /cache/dalvik-cache
 # because stl11 is too small
@@ -267,40 +247,10 @@ loglevel 9
     chown root root /cache/lost+found
     chmod 0770 /cache/lost+found
 
-    chown radio radio /dev/dpramerr
-    chown radio radio /dev/dpram0
-    chown radio radio /dev/dpram1
-    chown radio radio /dev/dpram2
-    chown radio radio /dev/onedram_rfs
-    chown radio radio /dev/multipdp
-
     # allow net_raw to have access to /dev/socket directory
     chown root net_raw /dev/socket
     chmod 0775 /dev/socket
 
-    #permissions for sound     
-    chmod 666 /dev/snd/timer
-    chmod 666 /dev/snd/controlC0
-    chmod 666 /dev/snd/controlC1
-    chmod 666 /dev/snd/pcmC0D0c
-    chmod 666 /dev/snd/pcmC0D0p
-    chmod 666 /dev/snd/pcmC1D0c
-    chmod 666 /dev/snd/pcmC1D0p
-
-    #camera fix thanks skeeterslint
-    chmod 666 /dev/video0
-    chmod 666 /dev/video1
-    chmod 666 /dev/video14
-    chmod 666 /dev/video2
-    chmod 666 /dev/video21
-    chmod 666 /dev/video22
-
-    # permissions for MTP device node
-    chmod 0777 /dev/usb_mtp_gadget
-
-    mount rootfs rootfs / ro remount
-    chmod 0662 /dev/log/events
-    chmod 0662 /dev/log/system
 
 on boot
 # basic network init
@@ -314,31 +264,6 @@ on boot
 # Set timeout value for rmnet stats.
     write /sys/devices/virtual/net/rmnet0/timeout_suspend 5000000
 
-# Define the oom_adj values for the classes of processes that can be
-# killed by the kernel. These are used in ActivityManagerService.
-    setprop ro.FOREGROUND_APP_ADJ 0
-    setprop ro.VISIBLE_APP_ADJ 1
-    setprop ro.PERCEPTIBLE_APP_ADJ 2
-    setprop ro.HEAVY_WEIGHT_APP_ADJ 3
-    setprop ro.SECONDARY_SERVER_ADJ 4
-    setprop ro.BACKUP_APP_ADJ 5
-    setprop ro.HOME_APP_ADJ 6
-    setprop ro.HIDDEN_APP_MIN_ADJ 7
-    setprop ro.EMPTY_APP_ADJ 15
-
-# Define the memory thresholds at which the above process classes will
-# be killed. These numbers are in pages (4k).
-    setprop ro.FOREGROUND_APP_MEM 2048
-    setprop ro.VISIBLE_APP_MEM 3072
-    setprop ro.PERCEPTIBLE_APP_MEM 4096
-    setprop ro.HEAVY_WEIGHT_APP_MEM 4096
-    setprop ro.SECONDARY_SERVER_MEM 6144
-    setprop ro.BACKUP_APP_MEM 6144
-    setprop ro.HOME_APP_MEM 6144
-    setprop ro.HIDDEN_APP_MEM 7168
-    setprop ro.EMPTY_APP_MEM 8192
-
-    setprop ro.bt.bdaddr_path "/data/misc/bluetooth/bt_addr"
 
 # Write value must be consistent with the above properties.
 # Note that the driver only supports 6 slots, so we have HOME_APP at the
@@ -390,15 +315,6 @@ on boot
     chown system system /sys/kernel/ipv4/tcp_rmem_max
     chown root radio /proc/cmdline
 
-# for Sensor HAL
-    chown compass compass /dev/akm8973_daemon
-    chmod 0666 /dev/akm8973_daemon
-    chown compass compass /dev/akm8973_aot
-    chmod 0666 /dev/accelerometer
-    chown compass compass /dev/accelerometer
-    chmod 0666 /dev/l3g4200d
-    chown compass compass /dev/l3g4200d
-    chmod 0666 /dev/akm8973_aot
 
 # Define TCP buffer sizes for various networks
 #   ReadMin, ReadInitial, ReadMax, WriteMin, WriteInitial, WriteMax,
@@ -407,9 +323,6 @@ on boot
     setprop net.tcp.buffersize.umts    4094,87380,110208,4096,16384,110208
     setprop net.tcp.buffersize.edge    4093,26280,35040,4096,16384,35040
     setprop net.tcp.buffersize.gprs    4092,8760,11680,4096,8760,11680
-
-# Include extra init file
-    import /system/etc/init.local.rc
 
     write /sys/class/block/mmcblk0/queue/iosched/low_latency 0
     write /sys/class/block/mmcblk1/queue/iosched/low_latency 0
@@ -424,13 +337,6 @@ on boot
     chmod 0660 /sys/module/bluetooth_power/parameters/power
     chmod 0660 /proc/bluetooth/sleep/proto
 
-    chown bluetooth bluetooth /dev/uinput
-    chmod 0660 /dev/uinput
-
-    chown bluetooth bluetooth /dev/s3c2410_serial0
-    chmod 0666 /dev/s3c2410_serial0
-    chown bluetooth bluetooth /dev/rfkill
-    chmod 0666 /dev/rfkill
     chmod 0777 /sys/class/rfkill/rfkill0/state
     chmod 0777 /sys/class/rfkill/rfkill1/state
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
@@ -439,11 +345,6 @@ on boot
     chown bluetooth bluetooth /sys/class/rfkill/rfkill1/state
 
     chmod 6771 /system/bin/brcm_dutMode
-# +++++++++++++++++++++++++++++++++++++++++++
-# for datarouter
-    chown system system /dev/ttygs0
-    chown system system /dev/dun 
-# +++++++++++++++++++++++++++++++++++++++++++
 
 
     class_start default
