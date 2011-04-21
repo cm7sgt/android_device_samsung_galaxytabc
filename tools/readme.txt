@@ -49,6 +49,10 @@ Issues and workarounds
     If that doesnt help try "adb shell stop hciattach" Sometimes hciattach service gets stuck when starting.
 
 Changelog:
+2011-04-21
+    Fix mounting Tab as USB drive (ums switch in kernel reported "ums online" instead of "online" that vold expects)
+    Fixed phone calls. Reapply RIL.java and RILConstants.java patches from cmsgs frameworks_base.
+
 2011-04-20
     Cleanup of init scripts, added /sdcard and /emmc links.
 
