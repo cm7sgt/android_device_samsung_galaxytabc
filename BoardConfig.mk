@@ -22,7 +22,7 @@
 BOARD_USES_GENERIC_AUDIO := false
 
 # Use the non-open-source parts, if they're present
--include vendor/samsung/common/GT-P1000/BoardConfigVendor.mk
+-include vendor/samsung/GT-P1000/BoardConfigVendor.mk
 
 # ARMv7-A Cortex-A8 architecture
 TARGET_CPU_ABI := armeabi-v7a
@@ -77,7 +77,7 @@ BOARD_SECOND_CAMERA_DEVICE := /dev/video2
 BOARD_HAVE_FM_RADIO := false
 
 # OpenGL stuff
-BOARD_EGL_CFG := vendor/samsung/common/GT-P1000/proprietary/egl/egl.cfg
+BOARD_EGL_CFG := vendor/samsung/GT-P1000/proprietary/egl/egl.cfg
 TARGET_BOARD_PLATFORM_GPU := POWERVR_SGX540_120
 BOARD_NO_RGBX_8888 := true
 BOARD_USES_FROYO_GRALLOC := true

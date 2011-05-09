@@ -37,4 +37,4 @@ include $(CLEAR_VARS)
 #include $(BUILD_PREBUILT)
 
 # include the non-open-source counterpart to this file
--include vendor/samsung/common/GT-P1000/AndroidBoardVendor.mk
+-include vendor/samsung/GT-P1000/AndroidBoardVendor.mk
