@@ -130,5 +130,10 @@
         <item>30</item>
     </integer-array>
 
+    <!-- toggles weather device is tablet or phone. right now,
+    tablets are know to have soft buttons, but phones have harware
+    buttons. this might change in the future - especially when the
+    honeycomb modifications become available for phones -->
+    <bool name="cm_default_is_tablet">true</bool>
 
 </resources>
