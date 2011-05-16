@@ -62,7 +62,8 @@ WIFI_DRIVER_MODULE_ARG := "firmware_path=/system/etc/wifi/bcm4329_sta.bin nvram_
 WIFI_IFACE_DIR := "/data/misc/wifi"
 CONFIG_DRIVER_WEXT := true
 BOARD_WEXT_NO_COMBO_SCAN := true
-
+BOARD_MOBILEDATA_INTERFACE_NAME := "pdp0"
+BOARD_NETWORK_INTERFACES_DIR := "/sys/devices/virtual/net"
 
 USE_CAMERA_STUB := true
 ifeq ($(USE_CAMERA_STUB),false)
