@@ -33,9 +33,9 @@ $(call inherit-product-if-exists, vendor/samsung/GT-P1000/GT-P1000-vendor.mk)
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.sf.lcd_density=200 \
-    ro.sf.hwrotation=0 \
+    ro.sf.hwrotation=90 \
     rild.libpath=/system/lib/libsec-ril.so \
-    rild.libargs=-d[SPACE]/dev/ttyS0 \
+    rild.libargs=-d[SPACE]/dev/s3c2410_serial3 \
     wifi.interface=eth0 \
     wifi.supplicant_scan_interval=15 \
     ro.wifi.channels=13 \
