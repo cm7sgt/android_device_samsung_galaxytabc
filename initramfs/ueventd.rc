@@ -1,4 +1,4 @@
-/dev/null                 0666   root       root
+/dev/null                 0666   root       root 
 /dev/zero                 0666   root       root
 /dev/full                 0666   root       root
 /dev/ptmx                 0666   root       root
@@ -7,7 +7,7 @@
 /dev/urandom              0666   root       root
 /dev/ashmem               0666   root       root
 /dev/binder               0666   root       root
-/dev/usb_mtp_gadget       0666   root       root
+/dev/usb_mtp_gadget       0660   system     system
 
 # logger should be world writable (for logging) but not readable
 /dev/log/*                0662   root       log
@@ -21,17 +21,17 @@
 /dev/bus/usb/*            0660   root       usb
 /dev/mem                  0666   system     system
 /dev/tspdrv               0666   root       root
-/dev/ttygs0               0600   system     system
+/dev/ttyGS0               0600   system     system
 
 # radio and network
 /dev/alarm                0664   system     radio
-/dev/onedram              0666   radio      root
+/dev/onedram              0660   radio      root
 /dev/ppp                  0660   radio      vpn
-/dev/tun                  0640   vpn        vpn
+/dev/tun                  0660   vpn        vpn
 /dev/dun                  0600   system     system
 
 # bluetooth
-/dev/uinput               0660   bluetooth  bluetooth
+/dev/uinput               0660   system     bluetooth
 /dev/rfkill               0666   bluetooth  bluetooth
 
 # sysfs properties
@@ -64,26 +64,25 @@
 /dev/block/bml9           0600   root       root
 /dev/block/bml10          0600   root       root
 /dev/block/bml11          0600   root       root
-/dev/block/bml12          0666   radio      root
+/dev/block/bml12          0660   radio      radio
 
 # graphics
 /dev/pvrsrvkm             0666   system     system
-/dev/s3c-jpg              0664   system     graphics
-/dev/s3c-mem              0666   system     system
-/dev/s3c-mfc              0666   system     graphics
-/dev/s3c_bc               0666   system     system
-/dev/sec-g2d              0664   system     system
+/dev/s3c-jpg              0660   system     camera
+/dev/s3c-mem              0660   system     system
+/dev/s3c-mfc              0660   system     graphics
+/dev/s3c_bc               0666   system     graphics
 /dev/pmem                 0660   system     graphics
 /dev/pmem_gpu1            0660   system     graphics
 /dev/graphics/*           0660   root       graphics
 
 # camera
-/dev/video0               0666   system     camera
-/dev/video1               0666   system     camera
-/dev/video2               0666   system     camera
-/dev/video14              0666   system     camera
-/dev/video21              0666   system     camera
-/dev/video22              0666   system     camera
+/dev/video0               0660   system     camera
+/dev/video1               0660   system     camera
+/dev/video2               0660   system     camera
+/dev/video14              0660   system     system
+/dev/video21              0660   system     system
+/dev/video22              0660   system     system
 
 # sound
 /dev/pmem_adsp            0660   system     audio
@@ -94,17 +93,17 @@
 /dev/modem_rfs            0660   radio      radio
 
 # sensors
-/dev/akm8973_aot          0660   compass    compass
-/dev/akm8973_daemon       0660   compass    compass
-/dev/accelerometer        0660   compass    compass
-/dev/l3g4200d             0660   compass    compass
+/dev/akm8973              0660   system     system
+/dev/accelerometer        0660   system     system
+/dev/l3g4200d             0600   root       root
 
 
 # for bluetooth
-/dev/s3c2410_serial0      0666   bluetooth  bluetooth
+/dev/s3c2410_serial0      0660   bluetooth  bluetooth
 # for GPS
-/dev/s3c2410_serial1      0600   gps        system
+/dev/s3c2410_serial1      0600   gps        gps
+# serial console aka s3c2310_serial2 uart in old kernel
+/dev/ttyFIQ0              0600   root       root
 # for radio
-/dev/s3c2410_serial2      0600   root       root
-/dev/s3c2410_serial3      0666   radio      radio
+/dev/s3c2410_serial3      0660   radio      radio
 

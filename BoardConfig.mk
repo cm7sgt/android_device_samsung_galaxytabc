@@ -37,11 +37,13 @@ TARGET_NO_KERNEL := false
 TARGET_NO_RECOVERY := false
 #BOARD_USES_INITRAMFS := true
 TARGET_NO_RADIOIMAGE := true
+TARGET_PREBUILT_KERNEL := device/samsung/galaxytab/kernel
 
 TARGET_PROVIDES_INIT := true
 TARGET_PROVIDES_INIT_TARGET_RC := true
 TARGET_BOARD_PLATFORM := s5pc110
-TARGET_BOOTLOADER_BOARD_NAME := galaxytab
+# ends up in ro.product.board
+TARGET_BOOTLOADER_BOARD_NAME := GT-P1000
 # override recovery init.rc with the default init.rc
 TARGET_RECOVERY_INITRC := device/samsung/galaxytab/initramfs/init.rc
 BOARD_PROVIDES_BOOTMODE := true
@@ -54,7 +56,7 @@ BOARD_HAVE_BLUETOOTH_BCM := true
 WPA_SUPPLICANT_VERSION := VER_0_6_X
 BOARD_WPA_SUPPLICANT_DRIVER := WEXT
 BOARD_WLAN_DEVICE := bcm4329
-WIFI_DRIVER_MODULE_PATH := "/lib/modules/dhd.ko"
+WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/2.6.35.7/dhd.ko"
 WIFI_DRIVER_MODULE_NAME := "dhd"
 WIFI_DRIVER_FW_STA_PATH := "/system/etc/wifi/bcm4329_sta.bin"
 WIFI_DRIVER_FW_AP_PATH := "/system/etc/wifi/bcm4329_aps.bin"

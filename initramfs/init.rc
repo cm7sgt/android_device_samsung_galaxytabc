@@ -26,23 +26,14 @@ loglevel 9
     export TMPDIR /data/local/tmp
     export TERMINFO /system/etc/terminfo
 
-# ko files for 3D
-    insmod /modules/pvrsrvkm.ko
-    insmod /modules/s3c_lcd.ko
-    insmod /modules/s3c_bc.ko
-
-# other modules
+    insmod /lib/modules/jbd2.ko
+    insmod /lib/modules/ext4.ko
     insmod /lib/modules/vibrator.ko
     insmod /lib/modules/fsr.ko
     insmod /lib/modules/fsr_stl.ko
     insmod /lib/modules/rfs_glue.ko
     insmod /lib/modules/rfs_fat.ko
-
-    insmod /lib/modules/onedram.ko
-    insmod /lib/modules/svnet.ko
-    insmod /lib/modules/modemctl.ko
     insmod /lib/modules/storage.ko
-    insmod /lib/modules/bthid.ko
 
 # Backwards Compat - XXX: Going away in G*
     symlink /system/etc /etc
@@ -124,6 +115,12 @@ loglevel 9
     # mount yaffs2 mtd@system /system 
     #mount ext2 /dev/block/stl9 /system ro noatime nodiratime nodev
     mount ext4 /dev/block/stl9 /system wait nodev noatime nodiratime noauto_da_alloc
+
+    insmod /system/lib/modules/2.6.35.7/ansi_cprng.ko
+    insmod /system/lib/modules/2.6.35.7/bthid.ko
+    insmod /system/lib/modules/2.6.35.7/cifs.ko
+    insmod /system/lib/modules/2.6.35.7/slow-work.ko
+    insmod /system/lib/modules/2.6.35.7/scsi_wait_scan.ko
 
 # DATA
     # We chown/chmod /data again so because mount is run as root + defaults
