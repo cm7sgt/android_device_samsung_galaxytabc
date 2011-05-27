@@ -12,7 +12,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-include $(call all-named-subdir-makefiles, libaudio setup_fs)
-#include $(call all-makefiles-under,$(LOCAL_PATH/../common))
+ifeq ($(TARGET_DEVICE),galaxytab)
+
+LOCAL_PATH:= $(call my-dir)
+
+include $(CLEAR_VARS)
+LOCAL_SRC_FILES := setup_fs.c
+LOCAL_MODULE := setup_fs
+LOCAL_MODULE_TAGS := optional
+include $(BUILD_EXECUTABLE)
+
+endif
 
 

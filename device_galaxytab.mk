@@ -115,10 +115,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/initramfs/recovery.fstab:recovery/root/misc/recovery.fstab \
     $(LOCAL_PATH)/initramfs/ueventd.rc:root/ueventd.rc
 
-# Filesystem management tools
-PRODUCT_PACKAGES += \
-	make_ext4fs \
-	setup_fs
 
 # GSM APN list override one in common_full
 PRODUCT_COPY_FILES += \
@@ -127,6 +123,11 @@ PRODUCT_COPY_FILES += \
 # These are the OpenMAX IL configuration files
 #PRODUCT_COPY_FILES += \
 #    device/samsung/common/sec_mm/sec_omx/sec_omx_core/secomxregistry:system/etc/secomxregistry
+
+# Filesystem management tools
+PRODUCT_PACKAGES += \
+    make_ext4fs \
+    setup_fs
 
 PRODUCT_PACKAGES += \
     libaudio
