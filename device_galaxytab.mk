@@ -36,6 +36,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.sf.hwrotation=90 \
     rild.libpath=/system/lib/libsec-ril.so \
     rild.libargs=-d[SPACE]/dev/s3c2410_serial3 \
+    ro.telephony.ril_class=samsung \
     wifi.interface=eth0 \
     wifi.supplicant_scan_interval=15 \
     ro.wifi.channels=13 \
