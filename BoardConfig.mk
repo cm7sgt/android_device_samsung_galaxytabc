@@ -67,7 +67,7 @@ BOARD_WEXT_NO_COMBO_SCAN := true
 BOARD_MOBILEDATA_INTERFACE_NAME := "pdp0"
 BOARD_NETWORK_INTERFACES_DIR := "/sys/devices/virtual/net"
 
-USE_CAMERA_STUB := true
+USE_CAMERA_STUB := false
 ifeq ($(USE_CAMERA_STUB),false)
 BOARD_CAMERA_LIBRARIES := libcamera
 endif
