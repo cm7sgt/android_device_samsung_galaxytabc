@@ -26,8 +26,6 @@ loglevel 9
     export TMPDIR /data/local/tmp
     export TERMINFO /system/etc/terminfo
 
-    insmod /lib/modules/jbd2.ko
-    insmod /lib/modules/ext4.ko
     insmod /lib/modules/vibrator.ko
     insmod /lib/modules/fsr.ko
     insmod /lib/modules/fsr_stl.ko

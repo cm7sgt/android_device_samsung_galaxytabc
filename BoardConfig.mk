@@ -80,19 +80,17 @@ BOARD_SECOND_CAMERA_DEVICE := /dev/video2
 BOARD_HAVE_FM_RADIO := false
 
 # OpenGL stuff
-BOARD_EGL_CFG := vendor/samsung/GT-P1000/proprietary/egl/egl.cfg
+BOARD_EGL_CFG := vendor/samsung/GT-P1000/proprietary/JQ1/egl/egl.cfg
 TARGET_BOARD_PLATFORM_GPU := POWERVR_SGX540_120
 BOARD_NO_RGBX_8888 := true
 BOARD_USES_FROYO_GRALLOC := true
 
 # Device related defines
-BOARD_KERNEL_CMDLINE := console=ttySAC2,115200 loglevel=4
+BOARD_KERNEL_CMDLINE := console=ttyFIQ0,115200 loglevel=4
 BOARD_KERNEL_BASE := 0x02e00000
 
 # storage
-# for pre .35 kernel usb mass storage switching
-BOARD_USE_USB_MASS_STORAGE_SWITCH := true
-TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/s3c-usbgadget/gadget/lun"
+BOARD_USE_USB_MASS_STORAGE_SWITCH := false
 # emmc storage
 BOARD_EMMC_DEVICE := /dev/block/mmcblk0p1
 # Vold

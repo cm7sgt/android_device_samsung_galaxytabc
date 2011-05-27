@@ -26,14 +26,13 @@ loglevel 9
     export TMPDIR /data/local/tmp
     export TERMINFO /system/etc/terminfo
 
-    insmod /lib/modules/jbd2.ko
-    insmod /lib/modules/ext4.ko
     insmod /lib/modules/vibrator.ko
     insmod /lib/modules/fsr.ko
     insmod /lib/modules/fsr_stl.ko
     insmod /lib/modules/rfs_glue.ko
     insmod /lib/modules/rfs_fat.ko
     insmod /lib/modules/storage.ko
+    insmod /lib/modules/bthid.ko
 
 # Backwards Compat - XXX: Going away in G*
     symlink /system/etc /etc
@@ -420,6 +419,12 @@ on property:persist.service.adb.enable=0
 
 # Execute files in /system/etc/init.d
 service sysinit /system/bin/logwrapper /system/xbin/busybox run-parts /system/etc/init.d
+    oneshot
+
+# create filesystems if necessary
+service setup_fs /system/bin/setup_fs /dev/block/mmcblk0p2 /dev/block/stl10 /dev/block/stl11
+    user root
+    group root
     oneshot
 
 # 3D init

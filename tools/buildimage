@@ -162,6 +162,8 @@ set_perm 0 0 06755 "/system/xbin/tcpdump"
 #package_extract_file "system/xbin/su" "/system/xbin/su"
 #set_perm 0 0 06755 "/system/xbin/su"
 
+cp ${SRC}/kernel zImage
+
 sync
 umount ./system
 losetup -d /dev/loop0
