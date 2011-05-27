@@ -145,7 +145,7 @@ PRODUCT_COPY_FILES += \
     $(KERNEL_BUILD)/drivers/scsi/scsi_wait_scan.ko:recovery/root/lib/modules/scsi_wait_scan.ko \
     $(KERNEL_BUILD)/drivers/misc/vibtonz/vibrator.ko:recovery/root/lib/modules/vibrator.ko \
     $(KERNEL_BUILD)/drivers/bluetooth/bthid/bthid.ko:recovery/root/lib/modules/bthid.ko \
-    $(KERNEL_BUILD)/drivers/net/wireless/bcm4329/dhd.ko:recovery/root/lib/modules/dhd.ko
+    $(KERNEL_BUILD)/drivers/net/wireless/bcm4329/dhd.ko:system/lib/modules/2.6.35.7/dhd.ko
 
 $(KERNEL_BUILD)/.config:
 	mkdir -p $(KERNEL_BUILD)
