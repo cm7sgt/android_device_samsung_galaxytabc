@@ -1,28 +1,28 @@
 This is a beta build of CyanogenMod 7 gingerbread
 by Technomancer TCMAN-dmg on freenode.net and irc.droid-life.com
 
-Bug reports: open issues at http://github.com/techomancer/android_device_samsung_galaxytab
+Bug reports: open issues at http://github.com/cm7sgt/android_device_samsung_galaxytab/issues
 
 This build is for beta testing, not for general consumption
 
 CREDITS
 
 See http://cmsgs.com for more info
-The github for CMSGS Tab is http://github.com/cmsgs
+The github for CMSGS Tab is http://github.com/cm7sgt
 
-It is based on great work of CM SGS team http://cmsgs.com
+It is based on great work of CyanogenMod and CM SGS/Teamhacksung http://cmsgs.com
 
 Thanks to codeworkx, coolya and noobnl and all beta testers.
 
 INSTALLATION
 
-Your Tab should be partitioned with P1_add_hidden
-It should have unsigned bootloaders that can load Euro ROMs
-Wipe your Tab (data, dbdata, cache)
-Flash it with heimdall (use simple flashme script for full flash)
-Or just flash zImage and factoryfs.ext4.
+Your Tab should be partitioned with gt-p1000_mr.pit
+It should have Gingerbread bootloaders from JQ1.
+Please use Bell I9000 JK5 modem.bin for AT&T Tab, and JQ1 modem.bin for Euro tabs. I am not sure about T-mobile, try JQ1.
 
-For Google apps download latest HDPI apps for Gingerbread http://goo-inside.me/gapps/ and install using recovery.
+To flash it, flash at least zImage and factoryfs.ext4 using Heimdall http://www.glassechidna.com.au/products/heimdall/
+setup_fs should automatically reformat data,dbdata and cache to ext4 on first boot.
+If not please reboot to recovery and try wipe from recovery.
 
 Status
 Voice: OK
@@ -30,14 +30,9 @@ Voice: OK
 Wifi: works
 BT: sometimes stuck on startup, doesnt fully pair
 GPS: working
-Buttons backlight - linked to LCD backlight
-Sensors:
-- BMA020/BMA150 Accelerometer
-- AK8973B: gravity OK, rest needs tuning
-- BH1721FVC Lightsensor: OK
-- L3G4200D gyro: uninmplemented
-- Proximity: faked at 10cm
-Camera: broken
+Lights: OK
+Sensors: OK
+Camera: OK
 
 Issues and workarounds
 * Stuck on CM boot ani after flash
@@ -49,6 +44,11 @@ Issues and workarounds
     If that doesnt help try "adb shell stop hciattach" Sometimes hciattach service gets stuck when starting.
 
 Changelog:
+2011-05-28
+    Switched to Gingerbread kernel 2.6.35.7 recently released by Samsung.
+    Use JQ1 binary drivers for OpenGL, sensors, lights, copybit, overylay, camera etc, so they all work!
+    Portrait is default orientation now, ro.sf.hwrotation=90 is set and touchscreen events are rotated in input layer so they match.
+
 2011-04-21
     Fix mounting Tab as USB drive (ums switch in kernel reported "ums online" instead of "online" that vold expects)
     Fixed phone calls. Reapply RIL.java and RILConstants.java patches from cmsgs frameworks_base.
