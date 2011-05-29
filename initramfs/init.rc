@@ -505,6 +505,10 @@ service dhcpcd_eth0 /system/bin/dhcpcd -ABLK eth0
     disabled
     oneshot
 
+service iprenew_eth0 /system/bin/dhcpcd -n
+    disabled
+    oneshot
+
 service ifcfg_eth0 /system/bin/ifconfig eth0 up
     disabled
     oneshot
