@@ -44,6 +44,10 @@ Issues and workarounds
     If that doesnt help try "adb shell stop hciattach" Sometimes hciattach service gets stuck when starting.
 
 Changelog:
+2011-05-28r2
+    Fixed setup_fs so it properly formats partitions.
+    Enabled more tablet tweaks (soft buttons).
+    Removed format for .android_secure in recovery, should fix wipe.
 2011-05-28
     Switched to Gingerbread kernel 2.6.35.7 recently released by Samsung.
     Use JQ1 binary drivers for OpenGL, sensors, lights, copybit, overylay, camera etc, so they all work!
