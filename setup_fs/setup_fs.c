@@ -20,12 +20,17 @@ int setup_fs(const char *blockdev)
         if (!memcmp(path, "/dev/block/", 11))
             blockdev = path + 11;
     }
+    else
+    {
+        if (!memcmp(blockdev, "/dev/block/", 11))
+            blockdev += 11;
+    }
 
     if (strchr(blockdev,'/')) {
         fprintf(stderr,"not a block device name: %s\n", blockdev);
         return 0;
     }
-    
+
     sprintf(buf,"/sys/fs/ext4/%s", blockdev);
     if (access(buf, F_OK) == 0) {
         fprintf(stderr,"device %s already has a filesystem\n", blockdev);
