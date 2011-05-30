@@ -97,7 +97,8 @@ PRODUCT_PACKAGES += \
 	libOMX.SEC.M4V.Decoder.aries \
 	libOMX.SEC.M4V.Encoder.aries \
 	libOMX.SEC.AVC.Encoder.aries \
-	libstagefrighthw
+	libstagefrighthw \
+	overlay.GT-P1000
 
 # Install the features available on this device.
 PRODUCT_COPY_FILES += \

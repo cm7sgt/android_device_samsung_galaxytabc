@@ -71,7 +71,7 @@ USE_CAMERA_STUB := false
 ifeq ($(USE_CAMERA_STUB),false)
 BOARD_CAMERA_LIBRARIES := libcamera
 endif
-BOARD_USES_OVERLAY := false
+BOARD_USES_OVERLAY := true
 BOARD_V4L2_DEVICE := /dev/video1
 BOARD_CAMERA_DEVICE := /dev/video0
 BOARD_SECOND_CAMERA_DEVICE := /dev/video2
@@ -82,8 +82,7 @@ BOARD_HAVE_FM_RADIO := false
 # OpenGL stuff
 BOARD_EGL_CFG := vendor/samsung/GT-P1000/proprietary/JQ1/egl/egl.cfg
 TARGET_BOARD_PLATFORM_GPU := POWERVR_SGX540_120
-BOARD_NO_RGBX_8888 := true
-BOARD_USES_FROYO_GRALLOC := true
+#BOARD_NO_RGBX_8888 := true
 
 # Device related defines
 BOARD_KERNEL_CMDLINE := console=ttyFIQ0,115200 loglevel=4

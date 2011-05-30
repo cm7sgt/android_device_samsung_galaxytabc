@@ -85,7 +85,7 @@
 /dev/video22              0660   system     system
 
 # sound
-/dev/pmem_adsp            0660   system     audio
+/dev/pmem_adsp*           0660   system     audio
 /dev/snd/*                0666   system     audio
 
 /dev/modem_ctl            0660   radio      radio
