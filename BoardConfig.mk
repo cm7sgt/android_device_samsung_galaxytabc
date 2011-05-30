@@ -109,6 +109,8 @@ BOARD_SYSTEMIMAGE_PARTITION_SIZE := 346030080
 # The size of a block that can be marked bad.
 BOARD_FLASH_BLOCK_SIZE := 131072
 
+# for recovery
+TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_BOOT_DEVICE := /dev/block/bml7
 BOARD_DATA_DEVICE := /dev/block/mmcblk0p2
 BOARD_DATA_FILESYSTEM := ext4
