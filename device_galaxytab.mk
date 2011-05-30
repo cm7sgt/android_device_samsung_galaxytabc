@@ -38,9 +38,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     rild.libargs=-d[SPACE]/dev/s3c2410_serial3 \
     ro.telephony.ril_class=samsung \
     wifi.interface=eth0 \
-    wifi.supplicant_scan_interval=15 \
-    ro.wifi.channels=13 \
-    ro.url.safetylegal=
+    wifi.supplicant_scan_interval=20
 
 # The OpenGL ES API level that is natively supported by this device.
 # This is a 16.16 fixed point number
@@ -49,10 +47,17 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # we have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
+
 PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.startheapsize=8m \
-    dalvik.vm.heapsize=48m \
-    dalvik.vm.execution-mode=int:jit
+    dalvik.vm.heapsize=48m
+
+# Extended JNI checks
+# The extended JNI checks will cause the system to run more slowly, but they can spot a variety of nasty bugs 
+# before they have a chance to cause problems.
+# Default=true for development builds, set by android buildsystem.
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.kernel.android.checkjni=0 \
+    dalvik.vm.checkjni=false
 
 # Galaxy S uses high-density artwork where available
 PRODUCT_LOCALES += hdpi
@@ -80,16 +85,19 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 DEVICE_PACKAGE_OVERLAYS += device/samsung/galaxytab/overlay
 
-# media profiles and capabilities spec
-$(call inherit-product, device/samsung/galaxytab/media_a1026.mk)
-
-# media config xml file
+# These are the OpenMAX IL configuration files
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/media_profiles.xml:system/etc/media_profiles.xml
+	device/samsung/aries-common/sec_mm/sec_omx/sec_omx_core/secomxregistry:system/etc/secomxregistry \
+	device/samsung/galaxytab/prebuilt/etc/media_profiles.xml:system/etc/media_profiles.xml
 
-# additional postinit scripts
-PRODUCT_COPY_FILES += \
-    device/samsung/galaxytab/prebuilt/etc/init.d/10htccopyright:system/etc/init.d/10htccopyright
+# These are the OpenMAX IL modules
+PRODUCT_PACKAGES += \
+	libSEC_OMX_Core.aries \
+	libOMX.SEC.AVC.Decoder.aries \
+	libOMX.SEC.M4V.Decoder.aries \
+	libOMX.SEC.M4V.Encoder.aries \
+	libOMX.SEC.AVC.Encoder.aries \
+	libstagefrighthw
 
 # Install the features available on this device.
 PRODUCT_COPY_FILES += \
