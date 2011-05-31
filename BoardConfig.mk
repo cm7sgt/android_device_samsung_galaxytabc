@@ -48,6 +48,11 @@ TARGET_BOOTLOADER_BOARD_NAME := GT-P1000
 TARGET_RECOVERY_INITRC := device/samsung/galaxytab/initramfs/init.rc
 BOARD_PROVIDES_BOOTMODE := true
 
+# Releasetools
+TARGET_PROVIDES_RELEASETOOLS := true
+TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := ./device/samsung/galaxytab/releasetools/aries_ota_from_target_files
+TARGET_RELEASETOOL_IMG_FROM_TARGET_SCRIPT := ./device/samsung/galaxytab/releasetools/aries_img_from_target_files
+
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
@@ -110,6 +115,7 @@ BOARD_FLASH_BLOCK_SIZE := 131072
 
 # for recovery
 TARGET_USERIMAGES_USE_EXT4 := true
+BOARD_CUSTOM_BOOTIMG_MK := device/samsung/galaxytab/bootimg.mk
 BOARD_BOOT_DEVICE := /dev/block/bml7
 BOARD_DATA_DEVICE := /dev/block/mmcblk0p2
 BOARD_DATA_FILESYSTEM := ext4

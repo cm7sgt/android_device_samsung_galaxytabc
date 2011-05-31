@@ -120,7 +120,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/initramfs/init.rc:root/init.rc \
     $(LOCAL_PATH)/initramfs/lpm.rc:root/lpm.rc \
     $(LOCAL_PATH)/initramfs/recovery.rc:recovery/root/recovery.rc \
-    $(LOCAL_PATH)/initramfs/recovery.fstab:recovery/root/misc/recovery.fstab \
     $(LOCAL_PATH)/initramfs/ueventd.rc:root/ueventd.rc
 
 
@@ -178,6 +177,8 @@ $(KERNEL_MODULES): $(KERNEL_BUILD)/.config
 
 $(KERNEL_BUILD)/arch/arm/boot/zImage: out/target/product/galaxytab/recovery/root.ts $(KERNEL_BUILD)/.config
 	@echo "BUILDING KERNEL"
+	mkdir -p out/target/product/galaxytab/recovery/root/misc
+	mv out/target/product/galaxytab/recovery/root/etc/* out/target/product/galaxytab/recovery/root/misc
 	rm -rfv out/target/product/galaxytab/recovery/root/etc
 	cp -v out/target/product/galaxytab/root/default.prop out/target/product/galaxytab/recovery/root/default.prop
 	$(MAKE) -C kernel/samsung/2.6.35-tab LOCALVERSION= ARCH=arm O=$(ANDROID_BUILD_TOP)/$(PRODUCT_OUT)/kernel_build CROSS_COMPILE=$(KERNEL_TOOLCHAIN)
