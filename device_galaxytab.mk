@@ -119,13 +119,18 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/initramfs/init.smdkc110.rc:root/init.smdkc110.rc \
     $(LOCAL_PATH)/initramfs/init.rc:root/init.rc \
     $(LOCAL_PATH)/initramfs/lpm.rc:root/lpm.rc \
-    $(LOCAL_PATH)/initramfs/recovery.rc:recovery/root/recovery.rc \
-    $(LOCAL_PATH)/initramfs/ueventd.rc:root/ueventd.rc
+    $(LOCAL_PATH)/initramfs/ueventd.rc:root/ueventd.rc \
+    $(LOCAL_PATH)/initramfs/recovery.rc:recovery/root/recovery.rc
 
 
 # GSM APN list override one in common_full
 PRODUCT_COPY_FILES += \
     vendor/cyanogen/prebuilt/common/etc/apns-conf.xml:system/etc/apns-conf.xml
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/modelid_cfg.sh:system/bin/modelid_cfg.sh \
+    $(LOCAL_PATH)/verify_cache_partition_size.sh:system/bin/verify_cache_partition_size.sh
+
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \

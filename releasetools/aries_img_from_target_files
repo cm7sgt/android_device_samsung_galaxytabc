@@ -90,7 +90,7 @@ def AddSystem(output_zip):
   """Turn the contents of SYSTEM into a system image and store it in
   output_zip."""
 
-  print "creating system.img..."
+  print "ARIES creating system.img..."
 
   img = tempfile.NamedTemporaryFile()
 

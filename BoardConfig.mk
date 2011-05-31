@@ -106,11 +106,8 @@ BOARD_HAS_NO_MISC_PARTITION := true
 
 BOARD_BOOTIMAGE_MAX_SIZE := $(call image-size-from-data-size,0x00780000)
 BOARD_RECOVERYIMAGE_MAX_SIZE := $(call image-size-from-data-size,0x00780000)
-BOARD_SYSTEMIMAGE_MAX_SIZE := $(call image-size-from-data-size,0x14A00000)
-#BOARD_SYSTEMIMAGE_MAX_SIZE := 346030080
-BOARD_SYSTEMIMAGE_PARTITION_SIZE := 346030080
-#BOARD_USERDATAIMAGE_MAX_SIZE := $(call image-size-from-data-size,0x04ac0000)
-# The size of a block that can be marked bad.
+BOARD_SYSTEMIMAGE_MAX_SIZE := $(call image-size-from-data-size,0x14080000)
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 336068608
 BOARD_FLASH_BLOCK_SIZE := 131072
 
 # for recovery

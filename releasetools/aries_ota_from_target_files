@@ -36,20 +36,6 @@ import aries_edify_generator as edify_generator
 
 __doc__ = ota_from_target_files.__doc__
 
-def CopyBootFiles(input_zip, output_zip):
-    output_zip.write(os.path.join(TARGET_DIR, "boot.img"),"boot.img")
-
-def CopyBMLoverMTD(output_zip):
-  """Copy the bml_over_mtd utility and script to the output."""
-  output_zip.write(os.path.join(TARGET_DIR, "modem.bin"),"modem.bin")
-  output_zip.write(os.path.join(UTILITIES_DIR, "make_ext4fs"),"make_ext4fs")
-  output_zip.write(os.path.join(UTILITIES_DIR, "busybox"),"busybox")
-  output_zip.write(os.path.join(UTILITIES_DIR, "flash_image"),"flash_image")
-  output_zip.write(os.path.join(UTILITIES_DIR, "erase_image"),"erase_image")
-  output_zip.write(os.path.join(UTILITIES_DIR, "bml_over_mtd"),"bml_over_mtd")
-  output_zip.write(os.path.join(LOCAL_DIR, "bml_over_mtd.sh"),"bml_over_mtd.sh")
-  output_zip.write(os.path.join(LOCAL_DIR, "updater.sh"),"updater.sh")
-
 def WriteFullOTAPackage(input_zip, output_zip):
   # TODO: how to determine this?  We don't know what version it will
   # be installed on top of.  For now, we expect the API just won't
@@ -84,9 +70,19 @@ def WriteFullOTAPackage(input_zip, output_zip):
   if OPTIONS.wipe_user_data:
     script.FormatPartition("/data")
 
-  script.FormatPartition("/system")
-  script.Mount("/system")
-  script.UnpackPackageDir("recovery", "/system")
+  script.Print("Flashing kernel ...")
+  script.RedbendUA("/tmp/boot.img", "/dev/block/bml7")
+  script.RedbendUA("/tmp/boot.img", "/dev/block/bml8")
+
+  script.Print("Formatting system ...")
+  #script.FormatPartition("/system")
+  script.AppendExtra('run_program("/tmp/make_ext4fs", "-a", "system", "/dev/block/stl9", "/system");')
+  script.Print("Mounting system ...")
+  #script.Mount("/system")
+  #script.AppendExtra('mount("ext4", "", "/dev/block/stl9", "/system");')
+  script.AppendExtra('run_program("/tmp/busybox", "mount", "-t", "ext4", "/dev/block/stl9", "/system");')
+  script.ShowProgress(0.4, 0)
+  script.Print("Unpacking system ...")
   script.UnpackPackageDir("system", "/system")
 
   symlinks = CopySystemFiles(input_zip, output_zip)
@@ -101,15 +97,12 @@ def WriteFullOTAPackage(input_zip, output_zip):
     script.ShowProgress(0.2, 10)
     script.RunBackup("restore")
 
-  script.RunModelidCfg()
-
-  script.RunVerifyCachePartitionSize()
-
-  CopyBootFiles(input_zip, output_zip)
-  CopyBMLoverMTD(output_zip)
+  output_zip.write(os.path.join(TARGET_DIR, "boot.img"),"boot.img")
+  output_zip.write(os.path.join(UTILITIES_DIR, "make_ext4fs"),"make_ext4fs")
+  output_zip.write(os.path.join(UTILITIES_DIR, "busybox"),"busybox")
+  output_zip.write(os.path.join(UTILITIES_DIR, "redbend_ua"),"redbend_ua")
 
   script.ShowProgress(0.2, 10)
-  script.WriteBMLoverMTD("boot", "72", "reservoir", "2004", "boot.img")
 
   script.ShowProgress(0.1, 0)
   device_specific.FullOTA_InstallEnd()
@@ -124,7 +117,7 @@ ota_from_target_files.WriteFullOTAPackage = WriteFullOTAPackage
 
 
 def WriteIncrementalOTAPackage(target_zip, source_zip, output_zip):
-    print "Incremental OTA Packages are not support on the Samsung Galaxy S at this time"
+    print "Incremental OTA Packages are not support on the Samsung Galaxy Tab at this time"
     sys.exit(1)
 ota_from_target_files.WriteIncrementalOTAPackage = WriteIncrementalOTAPackage
 
