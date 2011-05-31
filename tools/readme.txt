@@ -44,9 +44,9 @@ Issues and workarounds
     If that doesnt help try "adb shell stop hciattach" Sometimes hciattach service gets stuck when starting.
 
 Changelog:
-2011-05-29
-    Fix problems with headphones/headsets and libaudio, kanged common-aries libaudio
-    Added OMX libraries from common-aries
+2011-05-30
+    Fix problems with headphones/headsets and libaudio, kanged common-aries libaudio.
+    Added OMX libraries and overlay from common-aries.
 
 2011-05-28r2
     Fixed setup_fs so it properly formats partitions.

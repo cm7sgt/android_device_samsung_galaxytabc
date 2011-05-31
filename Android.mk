@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-include $(call all-named-subdir-makefiles, libaudio setup_fs libcamera ../aries-common/sec_mm ../aries-common/libstagefrighthw liboverlay)
+include $(call all-named-subdir-makefiles, setup_fs libcamera ../aries-common/sec_mm ../aries-common/libstagefrighthw liboverlay libaudio)
 #include $(call all-makefiles-under,$(LOCAL_PATH/../common))
 
 
