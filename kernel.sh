@@ -10,9 +10,13 @@ export ARCH=arm
 export LD_LIBRARY_PATH=.:${TOOLCHAIN}/../lib
 
 
-export OUT_DIR=`readlink -f ../../../out/target/product/galaxytab`
+export OUT_DIR=`readlink -f ../../../out`
+export OUT_DIR=${OUT_DIR}/target/product/galaxytab
+echo out dir is ${OUT_DIR}
+mkdir -p ${OUT_DIR}
 export KERNEL_SOURCE_DIR=`readlink -f ../../../kernel/samsung/2.6.35-tab`
-export KERNEL_BUILD_DIR=`readlink -f ../../../out/target/product/galaxytab/kernel_build`
+export KERNEL_BUILD_DIR=${OUT_DIR}/kernel_build
+mkdir -p $KERNEL_BUILD_DIR
 
 echo kernel build is $KERNEL_BUILD_DIR
 echo kernel source $KERNEL_SOURCE_DIR
@@ -54,8 +58,6 @@ KERNEL_BUILD_MODULES()
 	cp -v ${KERNEL_BUILD_DIR}/drivers/net/wireless/bcm4329/dhd.ko prebuilt/modules
 
 }
-
-mkdir -p $KERNEL_BUILD_DIR
 
 case $1 in
     defconfig)
