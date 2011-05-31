@@ -127,10 +127,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     vendor/cyanogen/prebuilt/common/etc/apns-conf.xml:system/etc/apns-conf.xml
 
-# These are the OpenMAX IL configuration files
-#PRODUCT_COPY_FILES += \
-#    device/samsung/common/sec_mm/sec_omx/sec_omx_core/secomxregistry:system/etc/secomxregistry
-
 # Filesystem management tools
 PRODUCT_PACKAGES += \
     make_ext4fs \
@@ -147,6 +143,17 @@ endif
 
 PRODUCT_COPY_FILES += \
 	$(LOCAL_KERNEL):kernel
+
+# kernel modules we built
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/prebuilt/modules/cifs.ko:system/lib/modules/2.6.35.7/cifs.ko \
+    $(LOCAL_PATH)/prebuilt/modules/tun.ko:system/lib/modules/2.6.35.7/tun.ko \
+    $(LOCAL_PATH)/prebuilt/modules/dhd.ko:system/lib/modules/2.6.35.7/dhd.ko \
+    $(LOCAL_PATH)/prebuilt/modules/ansi_cprng.ko:root/lib/modules/ansi_cprng.ko \
+    $(LOCAL_PATH)/prebuilt/modules/scsi_wait_scan.ko:root/lib/modules/scsi_wait_scan.ko \
+    $(LOCAL_PATH)/prebuilt/modules/vibrator.ko:root/lib/modules/vibrator.ko \
+    $(LOCAL_PATH)/prebuilt/modules/bthid.ko:root/lib/modules/bthid.ko
+
 
 $(call inherit-product, build/target/product/full.mk)
 
