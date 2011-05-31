@@ -9,6 +9,8 @@ export ARCH=arm
 
 export LD_LIBRARY_PATH=.:${TOOLCHAIN}/../lib
 
+
+export OUT_DIR=`readlink -f ../../../out/target/product/galaxytab`
 export KERNEL_SOURCE_DIR=`readlink -f ../../../kernel/samsung/2.6.35-tab`
 export KERNEL_BUILD_DIR=`readlink -f ../../../out/target/product/galaxytab/kernel_build`
 
@@ -30,7 +32,12 @@ KERNEL_MENUCONFIG()
 KERNEL_BUILD()
 {
 	echo running build
+	mkdir -p ${OUT_DIR}/recovery/root/misc
+	cp -v ${OUT_DIR}/recovery/root/etc/* ${OUT_DIR}/recovery/root/misc
+	rm -rfv ${OUT_DIR}/recovery/root/etc
+	cp -v ${OUT_DIR}/root/default.prop ${OUT_DIR}/recovery/root
 	make -j$CPU_JOB_NUM -C $KERNEL_SOURCE_DIR O=$KERNEL_BUILD_DIR LOCALVERSION= ARCH=arm CROSS_COMPILE=$TOOLCHAIN/$TOOLCHAIN_PREFIX
+	cp $KERNEL_BUILD_DIR/arch/arm/boot/zImage kernel
 }
 
 KERNEL_BUILD_MODULES()

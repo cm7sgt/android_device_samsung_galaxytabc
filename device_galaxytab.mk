@@ -139,6 +139,15 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libaudio
 
+ifeq ($(TARGET_PREBUILT_KERNEL),)
+	LOCAL_KERNEL := device/samsung/galaxytab/kernel
+else
+	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
+endif
+
+PRODUCT_COPY_FILES += \
+	$(LOCAL_KERNEL):kernel
+
 $(call inherit-product, build/target/product/full.mk)
 
 PRODUCT_NAME := full_galaxytab
