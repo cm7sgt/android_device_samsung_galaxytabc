@@ -39,7 +39,7 @@ KERNEL_BUILD()
 	mv -v ${OUT_DIR}/recovery/root/etc ${OUT_DIR}/recovery/root/misc
 	cp -v ${OUT_DIR}/root/default.prop ${OUT_DIR}/recovery/root
 	make -j$CPU_JOB_NUM -C $KERNEL_SOURCE_DIR O=$KERNEL_BUILD_DIR LOCALVERSION= ARCH=arm CROSS_COMPILE=$TOOLCHAIN/$TOOLCHAIN_PREFIX
-	cp $KERNEL_BUILD_DIR/arch/arm/boot/zImage kernel
+	cp -v $KERNEL_BUILD_DIR/arch/arm/boot/zImage kernel
 	mv -v ${OUT_DIR}/recovery/root/misc ${OUT_DIR}/recovery/root/etc
 }
 
