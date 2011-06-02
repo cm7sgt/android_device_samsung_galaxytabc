@@ -23,7 +23,7 @@ import edify_generator
 
 class EdifyGenerator(edify_generator.EdifyGenerator):
     def AssertDevice(self, device):
-      edify_generator.EdifyGenerator.AssertDevice(self, device)
+      edify_generator.EdifyGenerator.AssertDevice(self, device + ",GT-P1000,SGH-T849,SGH-I897")
 
       self.script.append(
            ('package_extract_file("make_ext4fs", "/tmp/make_ext4fs");\n'
