@@ -134,8 +134,10 @@ PRODUCT_COPY_FILES += \
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \
-    make_ext4fs \
     setup_fs
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/prebuilt/mke2fs:utilities/mke2fs
 
 PRODUCT_PACKAGES += \
     libaudio

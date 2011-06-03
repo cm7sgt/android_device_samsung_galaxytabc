@@ -26,8 +26,8 @@ class EdifyGenerator(edify_generator.EdifyGenerator):
       edify_generator.EdifyGenerator.AssertDevice(self, device)
 
       self.script.append(
-           ('package_extract_file("make_ext4fs", "/tmp/make_ext4fs");\n'
-            'set_perm(0, 0, 0777, "/tmp/make_ext4fs");'))
+           ('package_extract_file("mke2fs", "/tmp/mke2fs");\n'
+            'set_perm(0, 0, 0777, "/tmp/mke2fs");'))
       self.script.append(
             ('package_extract_file("busybox", "/tmp/busybox");\n'
              'set_perm(0, 0, 0777, "/tmp/busybox");'))

@@ -5,7 +5,7 @@
 #include <sys/reboot.h>
 #include <sys/wait.h>
 
-const char *mkfs = "/system/bin/make_ext4fs";
+const char *mkfs = "/system/bin/mke2fs";
 
 int setup_fs(const char *blockdev)
 {
@@ -46,7 +46,7 @@ int setup_fs(const char *blockdev)
         return 0;
     }
     if (child == 0) {
-        execl(mkfs, mkfs, buf, NULL);
+        execl(mkfs, mkfs, "-t", "ext4", "-m", "0", buf, NULL);
         exit(-1);
     }
 
