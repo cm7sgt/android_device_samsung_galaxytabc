@@ -44,6 +44,12 @@ Issues and workarounds
     If that doesnt help try "adb shell stop hciattach" Sometimes hciattach service gets stuck when starting.
 
 Changelog:
+
+2011-06-03
+    Add usb_connected switch to kernel, fixes usb mounting and usb connection detection.
+    Use mke2fs instead of make_ext4 for formatting in OTA and setup_fs. Should be more reliable.
+    Added download mode to reboot menu.
+
 2011-05-30
     Fix problems with headphones/headsets and libaudio, kanged common-aries libaudio.
     Added OMX libraries and overlay from common-aries.
