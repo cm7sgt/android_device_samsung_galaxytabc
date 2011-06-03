@@ -52,6 +52,7 @@ BOARD_PROVIDES_BOOTMODE := true
 TARGET_PROVIDES_RELEASETOOLS := true
 TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := ./device/samsung/galaxytab/releasetools/aries_ota_from_target_files
 TARGET_RELEASETOOL_IMG_FROM_TARGET_SCRIPT := ./device/samsung/galaxytab/releasetools/aries_img_from_target_files
+TARGET_OTA_ASSERT_DEVICE := galaxytab,GT-P1000,SGH-T849,SGH-I897
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
