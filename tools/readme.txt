@@ -7,8 +7,7 @@ This build is for beta testing, not for general consumption
 
 CREDITS
 
-See http://cmsgs.com for more info
-The github for CMSGS Tab is http://github.com/cm7sgt
+The github for CM7SGT Tab is http://github.com/cm7sgt
 
 It is based on great work of CyanogenMod and CM SGS/Teamhacksung http://cmsgs.com
 
@@ -28,11 +27,11 @@ Status
 Voice: OK
 3G Data: OK
 Wifi: works
-BT: sometimes stuck on startup, doesnt fully pair
+BT: sometimes stuck on startup, Headsets (SCO) do not work
 GPS: working
 Lights: OK
 Sensors: OK
-Camera: OK
+Camera: mostly OK (video recording broken)
 
 Issues and workarounds
 * Stuck on CM boot ani after flash
@@ -44,6 +43,11 @@ Issues and workarounds
     If that doesnt help try "adb shell stop hciattach" Sometimes hciattach service gets stuck when starting.
 
 Changelog:
+2011-06-05
+    Added 10-point Multitouch to kernel (thanks to The_Double and hoss_n2)
+    Added overclock (1.4GHz) and undevolt (thanks to Richard Trip and Koxudaxi)
+    Added Voodoo Sound V9 (thanks to Supercurio and Richard Trip)
+    Switched to (some) Crespo EGL SOs, hopefully will fix some OpenGL issues.
 
 2011-06-03
     Add usb_connected switch to kernel, fixes usb mounting and usb connection detection.
