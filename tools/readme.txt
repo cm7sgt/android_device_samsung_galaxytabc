@@ -43,6 +43,10 @@ Issues and workarounds
     If that doesnt help try "adb shell stop hciattach" Sometimes hciattach service gets stuck when starting.
 
 Changelog:
+
+    Add attribute for available frequencies, fix cpufreq sysfs permissions so CMParts can access it.
+    Change compile options for kernel to cortex-a8. Enable Tiny RCU.
+
 2011-06-05
     Added 10-point Multitouch to kernel (thanks to The_Double and hoss_n2)
     Added overclock (1.4GHz) and undevolt (thanks to Richard Trip and Koxudaxi)
