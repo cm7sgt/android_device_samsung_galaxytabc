@@ -130,6 +130,9 @@
         <item>30</item>
     </integer-array>
 
+    <!-- The default iface on which to monitor data use -->
+    <string name="config_datause_iface">pdp0</string>
+
     <!-- toggles weather device is tablet or phone. right now,
     tablets are know to have soft buttons, but phones have harware
     buttons. this might change in the future - especially when the
