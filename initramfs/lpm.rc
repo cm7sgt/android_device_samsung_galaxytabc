@@ -4,48 +4,56 @@ on early-init
     start ueventd
 
 on init
-	export PATH /sbin:/system/bin
-	export LD_LIBRARY_PATH /system/lib
-	export ANDROID_ROOT /system
-	export ANDROID_DATA /data
-	export EXTERNAL_STORAGE /sdcard
+    export PATH /sbin:/vendor/bin:/system/sbin:/system/bin:/system/xbin
+    export LD_LIBRARY_PATH /vendor/lib:/system/lib
+    export ANDROID_ROOT /system
+    export ANDROID_DATA /data
+    export EXTERNAL_STORAGE /sdcard
 
-	mkdir /system
-	mkdir /data 0771 system system
-	mkdir /cache 0770 system cache
-	mkdir /sdcard 0000 system system
-	mkdir /tmp
-	mount tmpfs nodev /tmp
+    symlink /system/etc /etc
 
-	insmod /lib/modules/vibrator.ko
-	insmod /lib/modules/fsr.ko
-	insmod /lib/modules/fsr_stl.ko
-	insmod /lib/modules/rfs_glue.ko
-	insmod /lib/modules/rfs_fat.ko
-	insmod /lib/modules/storage.ko
-	mkdir /mnt 0775 root system
-	mkdir /mnt/.lfs 0755 root root
-	insmod /lib/modules/j4fs.ko
-	mount j4fs /dev/block/stl6 /mnt/.lfs
-	insmod /lib/modules/param.ko 
+    mkdir /sdcard
+    mkdir /preload
+    mkdir /system
+    mkdir /data
+    mkdir /cache
+    mkdir /efs
+    mkdir /tmp
+    mkdir /dbdata
+    mkdir /mnt 0775 root root
 
-	mount ext4 /dev/block/stl9 /system wait nodev noatime nodiratime noauto_da_alloc
-	mount ext4 /dev/block/mmcblk0p2 /data wait nosuid nodev noatime nodiratime noauto_da_alloc
+on early-fs
+    # rfs drivers
+    insmod /lib/modules/fsr.ko
+    insmod /lib/modules/fsr_stl.ko
+    insmod /lib/modules/rfs_glue.ko
+    insmod /lib/modules/rfs_fat.ko
+    insmod /lib/modules/storage.ko
 
-	mkdir /data/log 0777
-	mkdir /data/anr 0777
+    # parameter block
+    mkdir /mnt/.lfs 0755 root root
+    insmod /lib/modules/j4fs.ko
+    mount j4fs /dev/block/stl6 /mnt/.lfs
+    insmod /lib/modules/param.ko
+
+on fs
+    mount tmpfs tmpfs /tmp
+    mount ext4 /dev/block/stl9 /system wait nodev noatime nodiratime noauto_da_alloc
+    mount ext4 /dev/block/mmcblk0p2 /data wait nosuid nodev noatime nodiratime noauto_da_alloc
+
 
 on boot
-	ifup lo
-	hostname localhost
-	domainname localdomain
+    ifup lo
+    hostname localhost
+    domainname localdomain
 
-	class_start default
+    class_start default
 
-	chown system system /sbin/busybox
+service ueventd /sbin/ueventd
+    critical
 
 service console /system/bin/sh
-	console
+    console
 
 # adbd is controlled by the persist.service.adb.enable system property
 service adbd /sbin/adbd
