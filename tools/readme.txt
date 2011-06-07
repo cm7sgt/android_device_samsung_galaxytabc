@@ -44,8 +44,11 @@ Issues and workarounds
 
 Changelog:
 
+2011-06-06
     Add attribute for available frequencies, fix cpufreq sysfs permissions so CMParts can access it.
     Change compile options for kernel to cortex-a8. Enable Tiny RCU.
+    Fixed calls from other places in the kernel that used olde speed levels and caused frequency spikes to 1.2GHz.
+    Fixed Low Power Mode (it properly starts /lpm.rc and displays charging animation).
 
 2011-06-05
     Added 10-point Multitouch to kernel (thanks to The_Double and hoss_n2)
