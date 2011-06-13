@@ -731,7 +731,7 @@ status_t AudioHardware::setIncallPath_l(uint32_t device)
             switch(device){
                 case AudioSystem::DEVICE_OUT_EARPIECE:
                     LOGD("### incall mode earpiece route");
-                    path = SOUND_AUDIO_PATH_HANDSET;
+                    path = SOUND_AUDIO_PATH_SPEAKER;
                     break;
 
                 case AudioSystem::DEVICE_OUT_SPEAKER:
