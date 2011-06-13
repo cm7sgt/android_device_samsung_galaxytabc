@@ -141,8 +141,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/mke2fs:utilities/mke2fs
 
-#PRODUCT_PACKAGES += \
-#    libaudio
+PRODUCT_PACKAGES += \
+    libaudio
 
 ifeq ($(TARGET_PREBUILT_KERNEL),)
 	LOCAL_KERNEL := device/samsung/galaxytab/kernel
