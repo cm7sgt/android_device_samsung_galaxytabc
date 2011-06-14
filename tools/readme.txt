@@ -26,8 +26,8 @@ If not please reboot to recovery and try wipe from recovery.
 Status
 Voice: OK
 3G Data: OK
-Wifi: works
-BT: sometimes stuck on startup, Headsets (SCO) do not work
+Wifi: OK
+BT: OK
 GPS: working
 Lights: OK
 Sensors: OK
@@ -43,6 +43,11 @@ Issues and workarounds
     If that doesnt help try "adb shell stop hciattach" Sometimes hciattach service gets stuck when starting.
 
 Changelog:
+
+2011-06-13
+    Rotary Lockscreen bitmaps and Twelve Key Dialer portrait and landscape layouts have been fixed by Fabrizio. Big thanks!
+    Fixed wrong parameter to ril->setCallVolume, hopefully will make call audio better.
+    Switched to use Samsung's binary brcm_patchram_plus with the same parameters in init.rc. Bluetooth SCO works now. Magic?
 
 2011-06-06
     Add attribute for available frequencies, fix cpufreq sysfs permissions so CMParts can access it.
