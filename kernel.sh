@@ -54,7 +54,7 @@ KERNEL_BUILD_MODULES()
 	cp -v ${KERNEL_BUILD_DIR}/drivers/scsi/scsi_wait_scan.ko prebuilt/modules
 	cp -v ${KERNEL_BUILD_DIR}/drivers/misc/vibtonz/vibrator.ko prebuilt/modules
 	cp -v ${KERNEL_BUILD_DIR}/drivers/bluetooth/bthid/bthid.ko prebuilt/modules
-	cp -v ${KERNEL_BUILD_DIR}/drivers/net/wireless/bcm4329/dhd.ko prebuilt/modules
+	cp -v ${KERNEL_BUILD_DIR}/drivers/net/wireless/bcm4329/bcm4329.ko prebuilt/modules
 
 }
 

@@ -158,7 +158,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/modules/cifs.ko:system/lib/modules/2.6.35.7/cifs.ko \
     $(LOCAL_PATH)/prebuilt/modules/tun.ko:system/lib/modules/2.6.35.7/tun.ko \
-    $(LOCAL_PATH)/prebuilt/modules/dhd.ko:system/lib/modules/2.6.35.7/dhd.ko \
+    $(LOCAL_PATH)/prebuilt/modules/bcm4329.ko:system/lib/modules/2.6.35.7/bcm4329.ko \
     $(LOCAL_PATH)/prebuilt/modules/ansi_cprng.ko:root/lib/modules/ansi_cprng.ko \
     $(LOCAL_PATH)/prebuilt/modules/scsi_wait_scan.ko:root/lib/modules/scsi_wait_scan.ko \
     $(LOCAL_PATH)/prebuilt/modules/vibrator.ko:root/lib/modules/vibrator.ko \

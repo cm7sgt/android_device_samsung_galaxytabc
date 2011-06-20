@@ -62,8 +62,8 @@ BOARD_HAVE_BLUETOOTH_BCM := true
 WPA_SUPPLICANT_VERSION := VER_0_6_X
 BOARD_WPA_SUPPLICANT_DRIVER := WEXT
 BOARD_WLAN_DEVICE := bcm4329
-WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/2.6.35.7/dhd.ko"
-WIFI_DRIVER_MODULE_NAME := "dhd"
+WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/2.6.35.7/bcm4329.ko"
+WIFI_DRIVER_MODULE_NAME := "bcm4329"
 WIFI_DRIVER_FW_STA_PATH := "/system/etc/wifi/bcm4329_sta.bin"
 WIFI_DRIVER_FW_AP_PATH := "/system/etc/wifi/bcm4329_aps.bin"
 WIFI_DRIVER_MODULE_ARG := "firmware_path=/system/etc/wifi/bcm4329_sta.bin nvram_path=/system/etc/wifi/nvram_net.txt dhd_watchdog_ms=10 dhd_poll=1"
