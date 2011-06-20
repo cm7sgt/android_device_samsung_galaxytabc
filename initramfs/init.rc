@@ -525,7 +525,7 @@ service dbus /system/bin/dbus-daemon --system --nofork
     user root
     group root net_bt_admin
 
-service hciattach /system/bin/brcm_patchram_plus --enable_hci --pcm_role slave --baudrate 921600 --patchram /system/bin/BCM4329B1_002.002.023.0534.0590.hcd /dev/s3c2410_serial0
+service hciattach /system/bin/brcm_patchram_plus --enable_hci --pcm_role slave --baudrate 3000000 --patchram /system/bin/BCM4329B1_002.002.023.0534.0590.hcd /dev/s3c2410_serial0
     user bluetooth
     group bluetooth net_bt_admin
     disabled
