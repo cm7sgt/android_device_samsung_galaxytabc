@@ -516,6 +516,7 @@ status_t AudioHardware::setParameters(const String8& keyValuePairs)
      }
 
 #ifdef HAVE_FM_RADIO
+    // fm radio on
     key = String8(FM_RADIO_KEY_ON);
     if (param.get(key, value) == NO_ERROR) {
         if (value == FM_RADIO_VALUE_ON) {
@@ -529,15 +530,36 @@ status_t AudioHardware::setParameters(const String8& keyValuePairs)
                 LOGV("AudioHardware::setParameters() FM Radio is ON, calling setFMRadioPath_l()");
                 setFMRadioPath_l(mOutput->device());
             }
-            param.remove(String8(FM_RADIO_KEY_ON));
-        } 
+        }
+    }
+    param.remove(String8(FM_RADIO_KEY_ON));
+
+    // fm radio off
+    key = String8(FM_RADIO_KEY_OFF);
+    if (param.get(key, value) == NO_ERROR) {
         if (value == FM_RADIO_VALUE_OFF) {
             LOGV("AudioHardware::setParameters() Turning FM Radio OFF");
-            closeMixer_l();
-            closePcmOut_l();
-        } 
-        param.remove(String8(FM_RADIO_KEY_OFF));  
+
+            if (mMixer != NULL) {
+                TRACE_DRIVER_IN(DRV_MIXER_GET)
+                struct mixer_ctl *ctl= mixer_get_control(mMixer, "FM Radio Path", 0);
+                TRACE_DRIVER_OUT
+
+                if (ctl != NULL) {
+                    TRACE_DRIVER_IN(DRV_MIXER_SEL)
+                    mixer_ctl_select(ctl, "FMR_MIX_OFF");
+                    TRACE_DRIVER_OUT
+
+                    TRACE_DRIVER_IN(DRV_MIXER_SEL)
+                    mixer_ctl_select(ctl, "FMR_OFF");
+                    TRACE_DRIVER_OUT
+                }
+                closeMixer_l();
+                closePcmOut_l();
+            }
+        }
     }
+    param.remove(String8(FM_RADIO_KEY_OFF));
 #endif
 
     return NO_ERROR;
@@ -802,7 +824,7 @@ status_t AudioHardware::setFMRadioPath_l(uint32_t device)
         case AudioSystem::DEVICE_OUT_BLUETOOTH_SCO_CARKIT:
             LOGD("setFMRadioPath_l() fmradio bluetooth route");
             break;
-					
+
         case AudioSystem::DEVICE_OUT_WIRED_HEADSET:
             LOGD("setFMRadioPath_l() fmradio headphone route");
             fmpath = "FMR_HP";
@@ -818,8 +840,7 @@ status_t AudioHardware::setFMRadioPath_l(uint32_t device)
         TRACE_DRIVER_IN(DRV_MIXER_GET)
         struct mixer_ctl *ctl= mixer_get_control(mMixer, "FM Radio Path", 0);
         TRACE_DRIVER_OUT
-        LOGE_IF(ctl == NULL, "");
-        
+
         if (ctl != NULL) {
             LOGV("setFMRadioPath_l() FM Radio Path, (%s)", fmpath);
             TRACE_DRIVER_IN(DRV_MIXER_SEL)
@@ -1334,7 +1355,7 @@ status_t AudioHardware::AudioStreamOutALSA::setParameters(const String8& keyValu
     LOGD("AudioStreamOutALSA::setParameters() %s", keyValuePairs.string());
 
     if (mHardware == NULL) return NO_INIT;
- 
+
     {
         AutoMutex lock(mLock);
 
@@ -1349,11 +1370,11 @@ status_t AudioHardware::AudioStreamOutALSA::setParameters(const String8& keyValu
                     if (mHardware->mode() != AudioSystem::MODE_IN_CALL) {
                         doStandby_l();
                     }
-                } 
+                }
                 if (mHardware->mode() == AudioSystem::MODE_IN_CALL) {
                     mHardware->setIncallPath_l(device);
                 }
-            } 
+            }
             param.remove(String8(AudioParameter::keyRouting));
         }
     }

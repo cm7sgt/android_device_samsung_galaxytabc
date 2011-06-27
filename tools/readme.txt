@@ -44,6 +44,11 @@ Issues and workarounds
 
 Changelog:
 
+2011-06-21
+    Enable CRT screen off/on animation.
+    Add virtual flag to capacitive buttons to enable vibration when they are pressed.
+    Increase HCI baud rate to 3M, hopefully this will help A2DP issues with BT keyboards.
+
 2011-06-13
     Rotary Lockscreen bitmaps and Twelve Key Dialer portrait and landscape layouts have been fixed by Fabrizio. Big thanks!
     Fixed wrong parameter to ril->setCallVolume, hopefully will make call audio better.
