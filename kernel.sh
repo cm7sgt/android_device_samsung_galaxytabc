@@ -55,7 +55,7 @@ KERNEL_BUILD_MODULES()
 	cp -v ${KERNEL_BUILD_DIR}/drivers/misc/vibtonz/vibrator.ko prebuilt/modules
 	cp -v ${KERNEL_BUILD_DIR}/drivers/bluetooth/bthid/bthid.ko prebuilt/modules
 	cp -v ${KERNEL_BUILD_DIR}/drivers/net/wireless/bcm4329/bcm4329.ko prebuilt/modules
-
+	cp -v ${KERNEL_BUILD_DIR}/drivers/net/wireless/bcm4329/hotspot_event_monitoring.ko prebuilt/modules
 }
 
 case $1 in

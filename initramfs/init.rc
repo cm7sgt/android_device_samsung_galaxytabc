@@ -118,6 +118,7 @@ loglevel 9
     insmod /lib/modules/bthid.ko
     insmod /lib/modules/scsi_wait_scan.ko
     insmod /system/lib/modules/2.6.35.7/cifs.ko
+    insmod /system/lib/modules/2.6.35.7/hotspot_event_monitoring.ko
 
 # DATA
     # We chown/chmod /data again so because mount is run as root + defaults
