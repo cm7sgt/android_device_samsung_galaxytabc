@@ -76,6 +76,7 @@ def WriteFullOTAPackage(input_zip, output_zip):
 
   script.Print("Formatting system ...")
   #script.FormatPartition("/system")
+  script.AppendExtra('unmount("/system");')
   script.AppendExtra('run_program("/tmp/mke2fs", "-m", "0", "-O", "has_journal,extent,huge_file,flex_bg,uninit_bg,dir_nlink,extra_isize", "-L", "system", "-M", "/system", "/dev/block/stl9");')
   script.Print("Mounting system ...")
   #script.Mount("/system")
