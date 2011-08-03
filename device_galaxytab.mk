@@ -38,7 +38,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     rild.libargs=-d[SPACE]/dev/s3c2410_serial3 \
     ro.telephony.ril_class=samsung \
     wifi.interface=eth0 \
-    wifi.supplicant_scan_interval=20
+    wifi.supplicant_scan_interval=20 \
+    ro.com.google.locationfeatures=1 \
+    ro.com.google.networklocation=1 \
+    ro.setupwizard.enable_bypass=1
 
 # The OpenGL ES API level that is natively supported by this device.
 # This is a 16.16 fixed point number
