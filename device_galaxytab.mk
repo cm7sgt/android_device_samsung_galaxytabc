@@ -146,7 +146,8 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/mke2fs:utilities/mke2fs
 
 PRODUCT_PACKAGES += \
-    libaudio
+    libaudio \
+    lights.GT-P1000
 
 ifeq ($(TARGET_PREBUILT_KERNEL),)
 	LOCAL_KERNEL := device/samsung/galaxytab/kernel
