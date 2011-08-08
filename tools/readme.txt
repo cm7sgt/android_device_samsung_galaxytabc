@@ -1,5 +1,5 @@
-This is a beta build of CyanogenMod 7 gingerbread
-by Technomancer TCMAN-dmg on freenode.net and irc.droid-life.com
+This is a beta build of CyanogenMod 7 Gingerbread for GSM Galaxy Tab 7
+by Technomancer (TCMAN-dmg on freenode.net #cm7sgt channel)
 
 Bug reports: open issues at http://github.com/cm7sgt/android_device_samsung_galaxytab/issues
 
@@ -43,6 +43,15 @@ Issues and workarounds
     If that doesnt help try "adb shell stop hciattach" Sometimes hciattach service gets stuck when starting.
 
 Changelog:
+2011-08-07
+    Update to latest from git. Android 2.3.5.
+    Added BLN kernel driver and LIGHT_ID_NOTIFICATIONS -> /sys/class/misc/backlightnotification/notification_led device to liblights. Big thanks to Neldar.
+    Fix geolocation/networklocation settings in props and frameworks' config.xml
+    Update EGL driver and pvrsvrkm kernel driver to latest from EF17 Sprint GB release.
+
+2011-07-20
+    Update to latest from git.
+    Merge changes from Sprint GB kernel source release. Merge relevant kernel changes to up to 2.6.35.10.
 
 2011-06-21
     Enable CRT screen off/on animation.
