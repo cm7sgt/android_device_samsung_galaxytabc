@@ -13,5 +13,11 @@
 ######################
 
 # external sdcard
-dev_mount sdcard /mnt/sdcard auto /devices/platform/s3c-sdhci.2/mmc_host/mmc1 /devices/platform/s3c-sdhci.2/mmc_host/mmc2
+{
+	mount_deep = 1
+	ums_path = /sys/devices/platform/usb_mass_storage/lun1/file
+	asec = enable
+	mbr_policy = overwrite
+}
+dev_mount sdcard1 /mnt/sdcard auto /devices/platform/s3c-sdhci.2/mmc_host/mmc1
 #end line ## keep this line

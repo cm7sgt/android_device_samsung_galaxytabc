@@ -15,10 +15,6 @@ Thanks to codeworkx, coolya and noobnl and all beta testers.
 
 INSTALLATION
 
-Your Tab should be partitioned with gt-p1000_mr.pit
-It should have Gingerbread bootloaders from JQ1.
-Please use Bell I9000 JK5 modem.bin for AT&T Tab, and JQ1 modem.bin for Euro tabs. I am not sure about T-mobile, try JQ1.
-
 To flash it, flash at least zImage and factoryfs.ext4 using Heimdall http://www.glassechidna.com.au/products/heimdall/
 setup_fs should automatically reformat data,dbdata and cache to ext4 on first boot.
 If not please reboot to recovery and try wipe from recovery.

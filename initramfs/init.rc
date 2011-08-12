@@ -167,7 +167,7 @@ loglevel 9
 # CACHE
     mkdir /cache 0771 system cache
     #mount yaffs2 mtd@cache /cache nosuid nodev
-    mount ext4 /dev/block/stl11 /cache nosuid nodev noatime nodiratime errors=continue nobh data=writeback barrier=0 noauto_da_alloc
+    mount ext4 /dev/block/mmcblk0p1 /cache nosuid nodev noatime nodiratime errors=continue nobh data=writeback barrier=0 noauto_da_alloc
     #mount rfs /dev/block/stl11 /cache nosuid nodev check=no
     chown system cache /cache
     chmod 0771 /cache
@@ -247,16 +247,16 @@ loglevel 9
     chown system system /data/dalvik-cache
     chmod 0771 /data/dalvik-cache
 
-    #mkdir /cache/dalvik-cache 0771 system system
-    #chown system system /cache/dalvik-cache
-    #chmod 0771 /cache/dalvik-cache
+    mkdir /cache/dalvik-cache 0771 system system
+    chown system system /cache/dalvik-cache
+    chmod 0771 /cache/dalvik-cache
 
 # use dbdata partition for /cache/dalvik-cache
 # because stl11 is too small
-    mkdir /dbdata/dalvik-cache
-    chown system system /dbdata/dalvik-cache
-    chmod 0771 /dbdata/dalvik-cache
-    symlink /dbdata/dalvik-cache /cache/dalvik-cache
+    #mkdir /dbdata/dalvik-cache
+    #chown system system /dbdata/dalvik-cache
+    #chmod 0771 /dbdata/dalvik-cache
+    #symlink /dbdata/dalvik-cache /cache/dalvik-cache
 
     # create the lost+found directories, so as to enforce our permissions
     mkdir /data/lost+found 0770
@@ -430,7 +430,7 @@ service sysinit /system/bin/logwrapper /system/xbin/busybox run-parts /system/et
     oneshot
 
 # create filesystems if necessary
-service setup_fs /system/bin/setup_fs /dev/block/mmcblk0p2 /dev/block/stl10 /dev/block/stl11
+service setup_fs /system/bin/setup_fs /dev/block/mmcblk0p2 /dev/block/stl10 /dev/block/mmcblk0p1
     user root
     group root
     oneshot
