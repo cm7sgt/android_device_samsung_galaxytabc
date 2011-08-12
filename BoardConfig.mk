@@ -22,7 +22,7 @@
 BOARD_USES_GENERIC_AUDIO := false
 
 # Use the non-open-source parts, if they're present
--include vendor/samsung/GT-P1000/BoardConfigVendor.mk
+-include vendor/samsung/SPH-P100/BoardConfigVendor.mk
 
 # ARMv7-A Cortex-A8 architecture
 TARGET_CPU_ABI := armeabi-v7a
@@ -37,22 +37,22 @@ TARGET_NO_KERNEL := false
 TARGET_NO_RECOVERY := false
 #BOARD_USES_INITRAMFS := true
 TARGET_NO_RADIOIMAGE := true
-TARGET_PREBUILT_KERNEL := device/samsung/galaxytab/kernel
+TARGET_PREBUILT_KERNEL := device/samsung/galaxytabc/kernel
 
 TARGET_PROVIDES_INIT := true
 TARGET_PROVIDES_INIT_TARGET_RC := true
 TARGET_BOARD_PLATFORM := s5pc110
 # ends up in ro.product.board
-TARGET_BOOTLOADER_BOARD_NAME := GT-P1000
+TARGET_BOOTLOADER_BOARD_NAME := SPH-P100
 # override recovery init.rc with the default init.rc
-TARGET_RECOVERY_INITRC := device/samsung/galaxytab/initramfs/init.rc
+TARGET_RECOVERY_INITRC := device/samsung/galaxytabc/initramfs/init.rc
 BOARD_PROVIDES_BOOTMODE := true
 
 # Releasetools
 TARGET_PROVIDES_RELEASETOOLS := true
-TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := ./device/samsung/galaxytab/releasetools/aries_ota_from_target_files
-TARGET_RELEASETOOL_IMG_FROM_TARGET_SCRIPT := ./device/samsung/galaxytab/releasetools/aries_img_from_target_files
-TARGET_OTA_ASSERT_DEVICE := galaxytab,GT-P1000,SGH-T849,SGH-I897
+TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := ./device/samsung/galaxytabc/releasetools/aries_ota_from_target_files
+TARGET_RELEASETOOL_IMG_FROM_TARGET_SCRIPT := ./device/samsung/galaxytabc/releasetools/aries_img_from_target_files
+TARGET_OTA_ASSERT_DEVICE := galaxytabc,SPH-P100,SCH-I800
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
@@ -91,15 +91,11 @@ TARGET_BOARD_PLATFORM_GPU := POWERVR_SGX540_120
 #BOARD_NO_RGBX_8888 := true
 
 # Device related defines
-BOARD_KERNEL_CMDLINE := console=ttyFIQ0,115200 loglevel=4
+BOARD_KERNEL_CMDLINE := console=ttySAC2,115200 loglevel=4
 BOARD_KERNEL_BASE := 0x02e00000
 
 # storage
 BOARD_USE_USB_MASS_STORAGE_SWITCH := false
-# emmc storage
-BOARD_EMMC_DEVICE := /dev/block/mmcblk0p1
-# Vold
-BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
 
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_HAS_NO_RECOVERY_PARTITION := true
@@ -113,7 +109,7 @@ BOARD_FLASH_BLOCK_SIZE := 131072
 
 # for recovery
 TARGET_USERIMAGES_USE_EXT4 := true
-BOARD_CUSTOM_BOOTIMG_MK := device/samsung/galaxytab/bootimg.mk
+BOARD_CUSTOM_BOOTIMG_MK := device/samsung/galaxytabc/bootimg.mk
 BOARD_BOOT_DEVICE := /dev/block/bml7
 BOARD_DATA_DEVICE := /dev/block/mmcblk0p2
 BOARD_DATA_FILESYSTEM := ext4
@@ -135,9 +131,6 @@ BOARD_PARAMFS_FILESYSTEM := rfs
 
 BOARD_USES_BMLUTILS := true
 BOARD_SDCARD_DEVICE_PRIMARY := /dev/block/mmcblk1p1
-BOARD_SDCARD_DEVICE_SECONDARY := /dev/block/mmcblk0p1
-BOARD_HAS_SDCARD_INTERNAL := true
-BOARD_SDCARD_DEVICE_INTERNAL := /dev/block/mmcblk0p1
 BOARD_HAS_DOWNLOAD_MODE := true
 TARGET_ROOT_IS_RECOVERY := true
 TARGET_BOOT_IS_RAMDISK := true

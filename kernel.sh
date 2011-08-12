@@ -11,7 +11,7 @@ export LD_LIBRARY_PATH=.:${TOOLCHAIN}/../lib
 
 
 export OUT_DIR=`readlink -f ../../../out`
-export OUT_DIR=${OUT_DIR}/target/product/galaxytab
+export OUT_DIR=${OUT_DIR}/target/product/galaxytabc
 echo out dir is ${OUT_DIR}
 mkdir -p ${OUT_DIR}
 export KERNEL_SOURCE_DIR=`readlink -f ../../../kernel/samsung/2.6.35-tab`
@@ -24,7 +24,7 @@ echo kernel source $KERNEL_SOURCE_DIR
 KERNEL_DEFCONFIG()
 {
 	echo running defconfig
-	make -C $KERNEL_SOURCE_DIR O=$KERNEL_BUILD_DIR LOCALVERSION= ARCH=arm p1_cm7_defconfig
+	make -C $KERNEL_SOURCE_DIR O=$KERNEL_BUILD_DIR LOCALVERSION= ARCH=arm p1_cdma_cm7_defconfig
 }
 
 KERNEL_MENUCONFIG()

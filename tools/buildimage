@@ -2,7 +2,7 @@
 # this script is used to unpack system.img and repack it into factoryfs image to be used for flashing the tab
 DEPTH=../../../..
 FSTYPE=ext4
-SRC=${DEPTH}/out/target/product/galaxytab
+SRC=${DEPTH}/out/target/product/galaxytabc
 
 modprobe loop
 umount ./system
