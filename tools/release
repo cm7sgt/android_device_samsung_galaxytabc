@@ -1,5 +1,5 @@
 
-zip -9 tcm7beta.zip factoryfs.ext4 zImage dbdata.ext4 cache.ext4 boot.bin sbl.bin gt-p1000_mr.pit readme.txt
+zip -9 tcm7beta.zip factoryfs.ext4 zImage dbdata.ext4 cache.ext4 readme.txt
 
 
 

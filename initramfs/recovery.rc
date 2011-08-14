@@ -158,7 +158,7 @@ loglevel 9
 
 # CACHE
     mkdir /cache 0771 system cache
-    mount ext4 /dev/block/stl11 /cache nosuid nodev noatime nodiratime errors=continue nobh data=writeback barrier=0 noauto_da_alloc
+    mount ext4 /dev/block/mmcblk0p1 /cache nosuid nodev noatime nodiratime errors=continue nobh data=writeback barrier=0 noauto_da_alloc
     chown system cache /cache
     chmod 0771 /cache
 
@@ -223,10 +223,10 @@ loglevel 9
 
 # use dbdata partition for /cache/dalvik-cache
 # because stl11 is too small
-    mkdir /dbdata/dalvik-cache
-    chown system system /dbdata/dalvik-cache
-    chmod 0771 /dbdata/dalvik-cache
-    symlink /dbdata/dalvik-cache /cache/dalvik-cache
+    #mkdir /dbdata/dalvik-cache
+    #chown system system /dbdata/dalvik-cache
+    #chmod 0771 /dbdata/dalvik-cache
+    #symlink /dbdata/dalvik-cache /cache/dalvik-cache
 
     # create the lost+found directories, so as to enforce our permissions
     mkdir /data/lost+found 0770
