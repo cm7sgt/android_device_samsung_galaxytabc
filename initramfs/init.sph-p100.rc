@@ -31,7 +31,7 @@ on boot
     setprop ro.telephony.call_ring.multiple 0
 
 # create data/gps for GPS demon
-    mkdir /data/gps 700 gps system
+    mkdir /data/gps 771 gps system
     chown gps system /data/gps
     chown gps root /sys/class/sec/gps/GPS_PWR_EN/value
     chmod 660 /sys/class/sec/gps/GPS_PWR_EN/value
@@ -47,6 +47,7 @@ on fs
     mount ext4 /dev/block/mmcblk0p1 /cache wait nosuid nodev noatime nodiratime noauto_da_alloc
 
     # kernel modules
+    insmod /lib/modules/dpram_vzw.ko
     insmod /lib/modules/ansi_cprng.ko
     insmod /lib/modules/bthid.ko
     insmod /lib/modules/scsi_wait_scan.ko
@@ -71,11 +72,11 @@ on fs
 
 on post-fs
 
-    # We chown/chmod /data and /datadata again so because mount is run as root + defaults
+    # We chown/chmod /data and /dbdata again so because mount is run as root + defaults
     chown system system /data
     chmod 0771 /data
-    chown system system /datadata
-    chmod 0771 /datadata
+    chown system system /dbdata
+    chmod 0771 /dbdata
 
     # Create dump dir and collect dumps.
     # Do this before we mount cache so eventually we can use cache for
@@ -166,7 +167,7 @@ on post-fs
     chmod 0664 /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
 
 # create filesystems if necessary
-service setup_fs /system/bin/setup_fs /dev/block/stl10 /dev/block/stl11
+service setup_fs /system/bin/setup_fs /dev/block/mmcblk0p2 /dev/block/stl10 /dev/block/stl11
     user root
     group root
     oneshot
