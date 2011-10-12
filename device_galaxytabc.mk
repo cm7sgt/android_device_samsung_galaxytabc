@@ -29,7 +29,7 @@ $(call inherit-product-if-exists, device/samsung/p1-common/common.mk)
 
 PRODUCT_PROPERTY_OVERRIDES += \
     rild.libpath=/system/lib/libsec-ril40.so \
-    rild.libargs==-d[SPACE]/dev/ttyS0 \
+    rild.libargs=-d /dev/ttyS0 \
     keyguard.no_require_sim=true
 
 # for sprint
@@ -38,7 +38,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ril.sales_code=SPR \
     ro.cdma.home.operator.alpha=sprint \
     ro.cdma.home.operator.numeric=310120 \
-    gsm.operator.alpha=sprint
+    gsm.operator.alpha=sprint \
+    ro.ril.samsung_cdma=true
 
 # for verizon
 #PRODUCT_PROPERTY_OVERRIDES += \
