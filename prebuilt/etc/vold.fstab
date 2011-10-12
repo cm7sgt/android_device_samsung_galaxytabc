@@ -11,13 +11,4 @@
 ## part         - Partition # (1 based), or 'auto' for first usable partition.
 ## <sysfs_path> - List of sysfs paths to source devices
 ######################
-
-# external sdcard
-{
-	mount_deep = 1
-	ums_path = /sys/devices/platform/usb_mass_storage/lun1/file
-	asec = enable
-	mbr_policy = overwrite
-}
-dev_mount sdcard1 /mnt/sdcard auto /devices/platform/s3c-sdhci.2/mmc_host/mmc1
-#end line ## keep this line
+dev_mount sdcard /mnt/sdcard auto /devices/platform/s3c-sdhci.2/mmc_host/mmc1

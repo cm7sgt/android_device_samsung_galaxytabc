@@ -29,23 +29,27 @@ $(call inherit-product-if-exists, device/samsung/p1-common/common.mk)
 
 PRODUCT_PROPERTY_OVERRIDES += \
     rild.libpath=/system/lib/libsec-ril40.so \
-    rild.libargs=-d /dev/ttyS0 \
+    rild.libargs=-d[SPACE]/dev/ttyS0 \
     keyguard.no_require_sim=true
 
-# for sprint
+# for cdma (Vzw values; works with Sprint also)
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.csc.sales_code=SPR \
-    ril.sales_code=SPR \
-    ro.cdma.home.operator.alpha=sprint \
-    ro.cdma.home.operator.numeric=310120 \
-    gsm.operator.alpha=sprint \
-    ro.ril.samsung_cdma=true
-
-# for verizon
-#PRODUCT_PROPERTY_OVERRIDES += \
-#    ro.csc.sales_code=VZW \
-#    ro.cdma.home.operator.alpha=VzW \
-#    ro.cdma.home.operator.numeric=310012
+    ro.telephony.default_network=4 \
+    ro.ril.def.agps.mode=2 \
+    ro.ril.samsung_cdma=true \
+    ro.cdma.home.operator.numeric=310004 \
+    ro.cdma.home.operator.alpha=Verizon \
+    ro.cdma.homesystem=64,65,76,77,78,79,80,81,82,83 \
+    ro.cdma.data_retry_config=default_randomization=2000,0,0,120000,180000,540000,960000 \
+    ro.config.vc_call_vol_steps=15 \
+    ro.cdma.otaspnumschema=SELC,3,00,07,80,87,88,99 \
+    net.cdma.pppd.authtype=require-chap \
+    net.cdma.pppd.user=user[SPACE]VerizonWireless \
+    net.cdma.datalinkinterface=/dev/ttyCDMA0 \
+    net.cdma.ppp.interface=ppp0 \
+    net.connectivity.type=CDMA1 \
+    net.interfaces.defaultroute=cdma \
+    ro.telephony.ril_class=samsung
 
 # For mobiledatainterfaces
 PRODUCT_PROPERTY_OVERRIDES += \
