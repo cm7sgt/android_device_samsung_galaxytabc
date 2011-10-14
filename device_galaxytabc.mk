@@ -27,6 +27,8 @@ $(call inherit-product-if-exists, vendor/samsung/SPH-P100/SPH-P100-vendor.mk)
 
 $(call inherit-product-if-exists, device/samsung/p1-common/common.mk)
 
+DEVICE_PACKAGE_OVERLAYS += device/samsung/galaxytabc/overlay
+
 PRODUCT_PROPERTY_OVERRIDES += \
     rild.libpath=/system/lib/libsec-ril40.so \
     rild.libargs=-d[SPACE]/dev/ttyS0 \
@@ -81,6 +83,10 @@ PRODUCT_COPY_FILES += \
 # Wifi
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/etc/wifi/wpa_supplicant.conf:system/etc/wpa_supplicant.conf
+
+# 3G
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/prebuilt/bin/pppd_runner:system/bin/pppd_runner
 
 ifeq ($(TARGET_PREBUILT_KERNEL),)
 	LOCAL_KERNEL := device/samsung/galaxytabc/kernel
