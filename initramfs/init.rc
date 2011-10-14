@@ -65,7 +65,6 @@ loglevel 9
     insmod /lib/modules/j4fs.ko
     mount j4fs /dev/block/stl6 /mnt/.lfs
     insmod /lib/modules/param.ko
-    insmod /lib/modules/dpram_vzw.ko
 
     # Directory for putting things only root should see.
     mkdir /mnt/secure 0700 root root

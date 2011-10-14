@@ -64,7 +64,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/etc/cdma-carriers-conf.xml:system/etc/cdma-carriers-conf.xml
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/initramfs/init.smdkc110.rc:root/init.smdkc110.rc \
+    $(LOCAL_PATH)/initramfs/init.sph-p100.rc:root/init.sph-p100.rc \
     $(LOCAL_PATH)/initramfs/init.rc:root/init.rc \
     $(LOCAL_PATH)/initramfs/lpm.rc:root/lpm.rc \
     $(LOCAL_PATH)/initramfs/ueventd.rc:root/ueventd.rc \
