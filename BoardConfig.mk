@@ -50,8 +50,8 @@ BOARD_PROVIDES_BOOTMODE := true
 
 # Releasetools
 TARGET_PROVIDES_RELEASETOOLS := true
-TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := ./device/samsung/galaxytabc/releasetools/aries_ota_from_target_files
-TARGET_RELEASETOOL_IMG_FROM_TARGET_SCRIPT := ./device/samsung/galaxytabc/releasetools/aries_img_from_target_files
+TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := ./device/samsung/p1-common/releasetools/aries_ota_from_target_files
+TARGET_RELEASETOOL_IMG_FROM_TARGET_SCRIPT := ./device/samsung/p1-common/releasetools/aries_img_from_target_files
 TARGET_OTA_ASSERT_DEVICE := galaxytabc,SPH-P100,SCH-I800
 
 # Bluetooth
