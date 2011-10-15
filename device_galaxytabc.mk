@@ -67,7 +67,6 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/initramfs/init.sph-p100.rc:recovery/root/init.sph-p100.rc \
-    $(LOCAL_PATH)/initramfs/init.rc:root/init.rc \
     $(LOCAL_PATH)/initramfs/lpm.rc:root/lpm.rc \
     $(LOCAL_PATH)/initramfs/ueventd.rc:root/ueventd.rc \
     $(LOCAL_PATH)/initramfs/recovery.rc:recovery/root/recovery.rc
