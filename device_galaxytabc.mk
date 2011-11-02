@@ -79,10 +79,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/modelid_cfg.sh:system/bin/modelid_cfg.sh \
     $(LOCAL_PATH)/verify_cache_partition_size.sh:system/bin/verify_cache_partition_size.sh
 
-# Wifi
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/prebuilt/etc/wifi/wpa_supplicant.conf:system/etc/wpa_supplicant.conf
-
 # 3G
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/bin/pppd_runner:system/bin/pppd_runner
