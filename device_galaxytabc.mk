@@ -57,19 +57,14 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     mobiledata.interfaces = eth0,ppp0
 
-PRODUCT_PACKAGES += \
-    overlay.SPH-P100 \
-    lights.SPH-P100
-
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/etc/vold.fstab:system/etc/vold.fstab \
     $(LOCAL_PATH)/prebuilt/etc/cdma-carriers-conf.xml:system/etc/cdma-carriers-conf.xml
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/initramfs/init.sph-p100.rc:recovery/root/init.sph-p100.rc \
+    $(LOCAL_PATH)/initramfs/init.sph-p100.rc:root/init.sph-p100.rc \
     $(LOCAL_PATH)/initramfs/lpm.rc:root/lpm.rc \
-    $(LOCAL_PATH)/initramfs/ueventd.rc:root/ueventd.rc \
-    $(LOCAL_PATH)/initramfs/recovery.rc:recovery/root/recovery.rc
+    $(LOCAL_PATH)/initramfs/recovery.rc:root/recovery.rc
 
 # GSM APN list override one in common_full
 PRODUCT_COPY_FILES += \

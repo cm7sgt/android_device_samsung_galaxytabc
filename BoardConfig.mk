@@ -46,6 +46,7 @@ TARGET_BOARD_PLATFORM := s5pc110
 TARGET_BOOTLOADER_BOARD_NAME := SPH-P100
 # override recovery init.rc with the default init.rc
 TARGET_RECOVERY_INITRC := device/samsung/galaxytabc/initramfs/init.rc
+BOARD_USES_COMBINED_RECOVERY := true
 BOARD_PROVIDES_BOOTMODE := true
 
 # Releasetools
